@@ -1,1 +1,34 @@
 <h1 type=center.>t1a03-forms-nolan.html</h1>
+
+<h3><font color=green>Proving that you can use: Forms 2026</font></h3><br>
+
+The following are all form elements:<br>
+<form >
+First Name:<input type=text id="myText01" value="Fred"><br>
+Last Name:<input type=text id="myText02" value="Williams"><br>
+Checkbox:<br>
+  Beef <input type=checkbox><br>
+  Veggie <input type=checkbox><br>
+Radio buttons:<br>
+  95.4 <input type=radio name="myRad01" value=""><br>
+  101 <input type=radio name="myRad01" value=""><br>
+  96.9 <input type=radio name="myRad01" value=""><br>
+
+hidden:<input type=hidden ><br>
+File:<input type=file><br>
+Reset:<input type=reset><br>
+Submit <input type=submit><br>
+
+Button: <input type=button value="Click me" onclick="{document.getElementById('myArea01').value = 'You clicked the button'}"><br>
+Textarea:<br>
+<textarea id="myArea01" cols = 60 rows = 5 > You can type here</textarea><br>
+
+Select Box:<br>
+<select id="mySelect01" size=2 onChange="{
+  document.getELementById('myArea01').value = document.getElementById('mySelect01').value }">
+<option value='myDog'>Dog</option>
+<option value='myCat'>Cat</option>
+<option value='myLizard'>Lizard</option>
+<option value='myMouse'>Mouse</option>
+</select>
+</form>
