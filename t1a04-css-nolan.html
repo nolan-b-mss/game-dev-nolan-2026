@@ -22,8 +22,14 @@ I do CSS inline inside the tag. It overpowers all other methods<br><br>
 <i id="myB1" style="color:#00ff00; background-color:blue; ">This is Italic with CSS background-color and main color</i>
 
 <input type=button value=Change onclick="{
+  if (document.getElementById('myB1').style.color = '#00ff00' && document.getElementById('myB1').style.backgroundColor = 'blue') {
   document.getElementById('myB1').style.color = 'red'
   document.getElementById('myB1').style.backgroundColor = 'yellow'
+  }
+  else {  
+  document.getElementById('myB1').style.color = '#00ff00'
+  document.getElementById('myB1').style.backgroundColor = 'blue'
+  }
 }"><br><br>
 
 <textarea style=" background-image: url('images/myCoolImage.png'); position:relative; left:200; top:50; width: 50%; height: 50; ">
