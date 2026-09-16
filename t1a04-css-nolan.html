@@ -22,7 +22,7 @@ I do CSS inline inside the tag. It overpowers all other methods<br><br>
 <i id="myB1" style="color:#00ff00; background-color:blue; ">This is Italic with CSS background-color and main color</i>
 
 <input type=button value=Change onclick="{
-  if (document.getElementById('myB1').style.color = '#00ff00' && document.getElementById('myB1').style.backgroundColor = 'blue') {
+  if (document.getElementById('myB1').style.color === '#00ff00' && document.getElementById('myB1').style.backgroundColor === 'blue') {
   document.getElementById('myB1').style.color = 'red'
   document.getElementById('myB1').style.backgroundColor = 'yellow'
   }
@@ -38,34 +38,5 @@ I moved the textarea left:200px; (200px to the right) and top:50px; (50px downwa
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <img src="images/myImage01.png" width=30% style=" border-radius:200px">
-
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
