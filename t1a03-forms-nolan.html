@@ -6,8 +6,7 @@ The following are all form elements:<br>
 <form >
 First Name:<input type=text id="myText01" value="Fred"><br>
 Last Name:<input type=text id="myText02" value="Williams"><br>
-Date:<input type="date" id="myDateIn"  onchange="{document.getElementById('myDateOut').innerText = 'Your date was: ' + document.getElementById('myDateIn').value;}"><br>
-<span id="myDateOut">Date output is here</span> <br>
+
 Checkbox:<br>
   Beef <input type=checkbox><br>
   Veggie <input type=checkbox><br>
@@ -33,4 +32,26 @@ Select Box:<br>
 <option value='myLizard'>Lizard</option>
 <option value='myMouse'>Mouse</option>
 </select>
+
+New stuff:
+Date:<input type="date" id="myDateIn"  onchange="{document.getElementById('myDateOut').innerText = 'Your date was: ' + document.getElementById('myDateIn').value;}"><br>
+<span id="myDateOut">Date output is here</span> <br>
+<input type="text" list="dataList" placeholder="Click on this, this is a Datalist">
+<datalist id="dataList">
+    <option value="html"></option>
+    <option value="css"></option>
+    <option value="javascript"></option>
+    <option value="python"></option>
+    <option value="php"></option>
+    <option value="variables"></option>
+    <option value="input/output"></option>
+    <option value="decisions"></option>
+    <option value="events"></option>
+    <option value="objects"></option>
+    <option value="functions"></option>
+    <option value="loops"></option>
+    <option value="arrays"></option>
+    <option value="classes"></option>
+</datalist><br>
 </form>
+
