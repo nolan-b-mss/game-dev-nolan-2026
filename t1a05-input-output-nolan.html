@@ -22,3 +22,17 @@
   }"><br>
 
 <div id="myDiv01">...</div>
+<br><br>
+<input type="range" id="myRange01" min="0" max="100" value="50" oninput="myRangeValue()">
+<span id="mySpan06">50</span>
+<b id="num50">This is 50!</b>
+<script>
+  function myRangeValue(){
+    let myRange02 = document.getElementById('myRange01').value
+    document.getElementById('mySpan06').innerHTML = myRange02
+    
+    if (myRange02 == 50) {document.getElementById('num50').innerHTML = "This is 50!"}
+    else {document.getElementById('num50').innerHTML = "This is not 50."}
+                         
+  }
+</script>
