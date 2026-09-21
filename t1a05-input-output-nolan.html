@@ -36,9 +36,12 @@
                          
   }
 </script>
+<br>
 <input type=text value="Fred" id="myName01"><br>
 <input type=text value="Williams" id="myName02"><br>
 <input type=button value="Conjoin names" onclick="{
-  document.getElementById('myDiv02').innerHTML = `Your entered full name is ${myName01} ${myName02}`
+  let myFName01 = document.getElementById('myName01').value;
+  let myFName02 = document.getElementById('myName02').value;
+  document.getElementById('myDiv02').innerHTML = `Your entered full name is ${myFName01} ${myFName02}`
 }">
 <div id="myDiv02">...</div>
