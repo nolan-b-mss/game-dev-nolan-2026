@@ -1,0 +1,23 @@
+<h1 align=center.>t1a05-input-output-nolan.html</h1>
+
+<a href="https://www.w3schools.com/jsref/prop_html_innerhtml.asp">Good refernce to input output Javascript innerHTML value by Nolan</a>
+
+<h4> Example input output code</h4>
+<pre>
+
+  myIn01 = document.getElementById('myNum01').value
+  document.getElementById('myDiv01').innerHTML = 'Hi'
+  
+</pre>
+
+<h4> Example working code</h4>
+
+<input id="myNum01" type=number value="4" ><br>
+
+<input type=button value="myEvent squares" onclick="{
+  let myIn01 = parseFloat(document.getElementById('myNum01').value)
+  let myAnswer = myIn01 * myIn01
+  document.getElementById('myDiv01').innerhtml = myIn01 + ' squared = ' + myAnswer
+  }"><Br>
+
+<div id="myDiv01">...</div>
