@@ -14,7 +14,7 @@ let myFloat = 17.5;
 let myBool = true;
     function sayHello(){
       myOut = document.getElementById('myDiv01');
-      myOut.innerHTML = `${myNum} + ${myString} + ${myFloat} + ', ' + ${myBool}`;
+      myOut.innerHTML = `${myNum}, ${myString}, ${myFloat}, ${myBool}`;
       if (myBool) {myOut.innerHTML += ', WOW';}
     }
     function myUpdateMyNum(){
@@ -31,6 +31,9 @@ let myBool = true;
       myString = ` ${myEditedString} `
       sayHello();
     }
+    function myFloatUpdate(){
+      myFloat = parseFloat(document.getElementById('myFloatInput').value)
+      sayHello();
   </script>
 </head>
 <body>
@@ -43,5 +46,6 @@ New stuff is below this
   <input type="number" id="myNumIn" value = 3 oninput="myUpdateMyNum()"> change this number to change myNum<br>
   <input type="button" value="Swap myBool true/false" onclick="myBoolSwap()"><br>
   <input type="textarea" value="Hello" oninput="myStringEdit()" id="myStringEditor"> change myString<br>
+  <input type="number" id="myFloatInput" step="any" value = 17.5 oninput="myFloatUpdate()"> change this number to change myFloat<br>
 </body>
 </html>
