@@ -21,6 +21,11 @@ let myBool = true;
       myNum = document.getElementById('myNumIn').value;
       sayHello();
     }
+    function myBoolSwap(){
+      if (myBool) {myBool = false;}
+      else {myBool = true;}
+      sayHello();
+    }
   </script>
 </head>
 <body>
@@ -30,6 +35,7 @@ let myBool = true;
 <hr>
 New stuff is below this
   <p>This is <i>italic</i> text.</p>
-  <input type="number" id="myNumIn" value = 3 oninput="myUpdateMyNum()"> change this number to change myNum
+  <input type="number" id="myNumIn" value = 3 oninput="myUpdateMyNum()"> change this number to change myNum<br>
+  <input type="button" value="Swap myBool true/false" onclick="myBoolSwap()">
 </body>
 </html>
