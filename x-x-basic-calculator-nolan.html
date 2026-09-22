@@ -18,7 +18,6 @@
   function myCalculate(){
     if (isNaN(myNum01) || isNaN(myNum02))
     {alert('Error occured in myInput01 or myInput02, are they real numbers? myAnswer < Infinity?'); return}
-    console.log(`${myNum01} ${myOperator} ${myNum02} = ${parseFloat(myAnswer)}`)
     if (myOperator === "+") {myAnswer = myNum01 + myNum02; myAnswerShow();}
     else if (myOperator === "-") {myAnswer = myNum01 - myNum02; myAnswerShow();}
     else if (myOperator === "*") {myAnswer = myNum01 * myNum02; myAnswerShow();}
