@@ -26,6 +26,10 @@ let myBool = true;
       else {myBool = true;}
       sayHello();
     }
+    function myStringEdit(){
+      let myEditedString = document.getElementById('myStringEditor');
+      myString = ` ${myEditedString} `
+      sayHello();
   </script>
 </head>
 <body>
@@ -36,6 +40,7 @@ let myBool = true;
 New stuff is below this
   <p>This is <i>italic</i> text.</p>
   <input type="number" id="myNumIn" value = 3 oninput="myUpdateMyNum()"> change this number to change myNum<br>
-  <input type="button" value="Swap myBool true/false" onclick="myBoolSwap()">
+  <input type="button" value="Swap myBool true/false" onclick="myBoolSwap()"><br>
+  <input type="textarea" value="Hello" oninput="myStringEdit()" id="myStringEditor"> change myString<br>
 </body>
 </html>
