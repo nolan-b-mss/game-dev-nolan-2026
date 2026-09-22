@@ -46,3 +46,15 @@ New stuff is below this <br>
   document.getElementById('myDiv02').innerHTML = `Your entered full name is ${myFName01} ${myFName02}`
 }">
 <div id="myDiv02">...</div>
+<br>
+<input type="date" id="myDate01"><br>
+<input type="button" onclick="myHowLongAgo()" value="How long ago was this?"> <br>
+<span id="mySpan02">...</span><br>
+<script>
+  function myHowLongAgo() {let dateInput = document.getElementById('myDate01').value;
+                           let myDate02 = new Date(dateInput);
+                           let myCurrentDate = new Date();
+                           let myDateDifference = myCurrentDate - myDate02
+                           let myDateResult = myDateDifference / 86400000
+                           document.getElementById('mySpan02').innerHTML = Math.floor(dateResult) + ' Days ago'}
+</script>
