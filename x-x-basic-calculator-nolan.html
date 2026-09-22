@@ -1,0 +1,28 @@
+<h1 align=center.> x-x-basic-calculator-nolan.html </h1>
+<input type=number id="myInput01" value = 2>
+<select id="myOperator">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="*">*</option>
+  <option value="/">/</option>
+</select>
+<input type=number id="myInput02" value = 4>
+<input type=button onclick="myCalculate()" value = "ENTER"><br>
+<div id="myDiv01">...</div>
+<script>
+  let myNum01 = parseFloat(document.getElementById('myInput01').value)
+  let myNum02 = parseFloat(document.getElementById('myInput02').value)
+  let myAnswer;
+
+  function myCalculate(){
+    console.log(`${myInput01}, ${myInput02}, ${myOperator}, ${myAnswer}...${myNum01},${myNum02}.`)
+    if (myOperator === "+") {myAnswer = myNum01 + myNum02; myAnswerShow();}
+    else if (myOperator === "-") {myAnswer = myNum01 - myNum02; myAnswerShow();}
+    else if (myOperator === "*") {myAnswer = myNum01 * myNum02; myAnswerShow();}
+    else if (myOperator === "/") {myAnswer = myNum01 / myNum02; myAnswerShow();}
+    else {alert('Error occured in finding operator')}
+  }
+  function myAnswerShow(){
+    document.getElementById('myDiv01').innerHTML = `${myNum01} ${myOperator} ${myNum02} = ${myAnswer}`
+  }
+</script>
