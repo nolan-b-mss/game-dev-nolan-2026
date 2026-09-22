@@ -1,6 +1,6 @@
 <h1 align=center.> x-x-basic-calculator-nolan.html </h1>
 <input type=number id="myInput01" value = 2>
-<select id="myOperator">
+<select id="operator">
   <option value="+">+</option>
   <option value="-">-</option>
   <option value="*">*</option>
@@ -12,10 +12,13 @@
 <script>
   let myNum01 = parseFloat(document.getElementById('myInput01').value)
   let myNum02 = parseFloat(document.getElementById('myInput02').value)
+  let myOperator = document.getElementById('operator').value
   let myAnswer;
 
   function myCalculate(){
-    console.log(`${myInput01}, ${myInput02}, ${myOperator}, ${myAnswer}...${myNum01},${myNum02}.`)
+    if (isNaN(myNum01) || isNaN(myNum02))
+    {alert('Error occured in myInput01 or myInput02, are they real numbers? myAnswer < Infinity?'); return}
+    console.log(`${myNum01} ${myOperator} ${myNum02} = ${myAnswer}`)
     if (myOperator === "+") {myAnswer = myNum01 + myNum02; myAnswerShow();}
     else if (myOperator === "-") {myAnswer = myNum01 - myNum02; myAnswerShow();}
     else if (myOperator === "*") {myAnswer = myNum01 * myNum02; myAnswerShow();}
