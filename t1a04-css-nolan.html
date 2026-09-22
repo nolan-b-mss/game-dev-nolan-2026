@@ -1,6 +1,6 @@
 <body style="background-color:gray;">
 
-<h1 align=center>t1a04-css-nolan.html</h1>
+<h1 align=center. style="border-style:solid;border-width:5px;background-color:white;border-radius:200px">t1a05-css-nolan.html</h1>
 
 Reference Link
 <a href="https://www.w3schools.com/cssref/default.asp">w3schools</a><br>
@@ -40,6 +40,15 @@ Advanced: See if you move this textarea
 I moved the textarea left:200px; (200px to the right) and top:50px; (50px downward)
 And yes, there is an image within this textarea.
 </textarea><br>
+
+<div id="myBlock01" src="images/arrowRight.png" width=50% height=50% style="position:relative;left:0px;">
+<br>
+<input type=button value="Move myBlock01 20px left" onclick="{
+  let myBlockX = document.getElementById('myBlock01').style.left
+    console.log(`myBlockX before move: ${myBlockX}`)
+  myBlockX += 20
+    console.log(`myBlockX after move: ${myBlockX}`)
+}">
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <img src="images/myImage01.png" width=30% style=" border-radius:200px">
