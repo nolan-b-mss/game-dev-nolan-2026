@@ -5,6 +5,7 @@
   <title>t1a06-proper-and-variables-nolan.html</title>
   <style>
     b { color: blue; }
+    i { color: indigo; }
   </style>
   <script>
     function sayHello(){
@@ -16,11 +17,19 @@
       myOut.innerHTML = `${myNum} + ${myString} + ${myFloat} + ', ' + ${myBool}`;
       if (myBool) {myOut.innerHTML += ', WOW';}
     }
+    function myUpdateMyNum(){
+      myNum = document.getElementById('myNumIn').value;
+      sayHello();
+    }
   </script>
 </head>
 <body>
   <p>This is <b>bold</b> text.</p>
   <button onclick="sayHello()">Click Me</button>
   <div id="myDiv01">...</div>
+<hr>
+New stuff is below this
+  <p>This is <i>italic</i> text.</p>
+  <input type="number" id="myNumIn" value = 3 oninput="myUpdateMyNum()"> change this number to change myNum
 </body>
 </html>
