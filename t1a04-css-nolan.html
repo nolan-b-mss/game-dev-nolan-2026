@@ -41,13 +41,13 @@ I moved the textarea left:200px; (200px to the right) and top:50px; (50px downwa
 And yes, there is an image within this textarea.
 </textarea><br>
 
-<div id="myBlock01" src="images/arrowRight.png" width=50% height=50% style="position:relative;left:0px;">
+<div id="myBlock01" src="images/arrowRight.png" width=50% height=50% style="position:relative;left:0px;">Hello</div>
 <br>
 <input type=button value="Move myBlock01 20px left" onclick="{
   let myBlockX = document.getElementById('myBlock01').style.left
     console.log(`myBlockX before move: ${myBlockX}`)
   myBlockX += 20
-    console.log(`myBlockX after move: ${myBlockX}`)
+  document.getElementById('myBlock01').style.left = myBlockX;
 }">
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
