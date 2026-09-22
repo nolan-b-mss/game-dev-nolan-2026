@@ -45,17 +45,13 @@ And yes, there is an image within this textarea.
 <br>
 <input type=button value="Move myBlock01 20px left via CSS value" onclick="{
   let myBlockX = parseFloat(document.getElementById('myBlock01').style.left)
-    console.log(`${myBlockX}`)
   myBlockX += 20
   document.getElementById('myBlock01').style.left = myBlockX;
-    console.log(`${myBlockX}`)
 }"><br>
 <input type=button value="Move myBlock01 20px right via CSS value" onclick="{
   let myBlockX = parseFloat(document.getElementById('myBlock01').style.left)
-    console.log(`${myBlockX}`)
   myBlockX -= 20
   document.getElementById('myBlock01').style.left = myBlockX;
-    console.log(`${myBlockX}`)
 }">
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
