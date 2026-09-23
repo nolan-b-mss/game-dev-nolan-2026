@@ -1,12 +1,12 @@
 <h1 align=center.> x-x-basic-calculator-nolan.html </h1>
-<input type=number id="myInput01" value = 2>
-<select id="operator" oninput="myOperatorUpdate()">
+<input type=number id="myInput01" value = 2 oninput="myValueUpdate()">
+<select id="operator" oninput="myValueUpdate()">
   <option value="+">+</option>
   <option value="-">-</option>
   <option value="*">*</option>
   <option value="/">/</option>
 </select>
-<input type=number id="myInput02" value = 4>
+<input type=number id="myInput02" value = 4 oninput="myValueUpdate()">
 <input type=button onclick="myCalculate()" value = "ENTER"><br>
 <div id="myDiv01">...</div>
 <script>
@@ -28,7 +28,9 @@
   function myAnswerShow(){
     document.getElementById('myDiv01').innerHTML = `${myNum01} ${myOperator} ${myNum02} = ${myAnswer}`
   }
-  function myOperatorUpdate(){
+  function myValueUpdate(){
     myOperator = document.getElementById('operator').value
+    myNum01 = parseFloat(document.getElementById('myInput01').value)
+    myNum02 = parseFloat(document.getElementById('myInput02').value)
   }
 </script>
