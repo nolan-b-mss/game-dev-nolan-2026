@@ -4,9 +4,9 @@
 <input type="button" value="Add 30 Minutes" onclick="myAddMinutes()">
 <input type="button" value="Add 1 Hour" onclick="myAddHour()">
 <script>
-  let mySeconds;
-  let myMinutes;
-  let myHours;
+  let mySeconds = 0;
+  let myMinutes = 0;
+  let myHours = 0;
   function myTimeLoop(){
     mySeconds += 1
     if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
