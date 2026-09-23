@@ -2,7 +2,10 @@
 
 <a href="hhtps://www.w3schools.com/js/js_if_else.asp">Good reference to decisions if ... else statements
 Javascript innerHTML value by Nolan</a><br>
-Note: ! = Not, && = AND, || = OR
+Note:<br> 
+! = NOT<br>
+&& = AND<br>
+|| = OR<br>
 
 <h4>Example input output code</h4>
 <pre>
@@ -42,3 +45,18 @@ Note: ! = Not, && = AND, || = OR
 }">
 
 <div id="myDiv01">...</div>
+<hr>
+New stuff below this:<br>
+2 inputs:<br>
+<input type=text value="Fred" id="myName01"><br>
+<input type=text value="Williams" id="myName02"><br>
+<input type=button value="Is your name Fred Williams?" onclick="{
+  let myFName01 = document.getElementById('myName01').value;
+  let myFName02 = document.getElementById('myName02').value;
+  if (myFName01 = 'Fred' && myFName02 = 'Williams'){
+  document.getElementById('myDiv02').innerHTML = `Yes! Your name is Fred Williams.`
+  } else {
+  document.getElementById('myDiv02').innerHTML = `No. Your name is ${myFName01} ${myFName02}.`
+  }
+}"><br>
+<div id="myDiv02">
