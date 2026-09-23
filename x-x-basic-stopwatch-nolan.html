@@ -1,0 +1,36 @@
+<h1 align=center.>x-x-basic-stopwatch-nolan.html</h1>
+<div id="myTimeOutput">00:00:00</div>
+<input type="button" value="Add 30 Seconds" onclick="myAddSeconds()">
+<input type="button" value="Add 30 Minutes" onclick="myAddMinutes()">
+<input type="button" value="Add 1 Hour" onclick="myAddHour()">
+<script>
+  let mySeconds;
+  let myMinutes;
+  let myHours;
+  function myTimeLoop(){
+    mySeconds += 1
+    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
+    if (myMinutes > 59){myHours += 1; myMinutes = 0;}
+    if (myHours > 23){myHours = 0}
+    myTimeUpdate();
+  }
+  function myAddSeconds(){
+    mySeconds += 30;
+    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
+    myTimeUpdate();
+  }
+  function myAddMinutes(){
+    myMinutes += 30;
+    if (myMinutes > 59){myHours += 1; myMinutes = 0;}
+    myTimeUpdate();
+  }
+  function myAddHour(){
+    myHours += 1;
+    if (myHours > 23){myHours = 0}
+    myTimeUpdate();
+  }
+  function myTimeUpdate(){
+    document.getElementById('myTimeOutput').innerHTML = `${myHours}:${myMinutes}:${mySeconds}`
+  } 
+  setInterval(myTimeLoop, 1000);
+</script>
