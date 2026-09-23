@@ -10,8 +10,8 @@
   function myTimeLoop(){
     mySeconds += 1
     if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0;}
-    if (myHours > 23){myHours = 0}
+    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
+    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
     myTimeUpdate();
   }
   function myAddSeconds(){
@@ -30,7 +30,18 @@
     myTimeUpdate();
   }
   function myTimeUpdate(){
+    if (myHours < 10 && myMinutes < 10 && myMinutes < 10){
+    document.getElementById('myTimeOutput').innerHTML = `0${myHours}:0${myMinutes}:0${mySeconds}`
+    }
+    if (myHours < 10 && myMinutes < 10 && myMinutes >= 10){
+    document.getElementById('myTimeOutput').innerHTML = `0${myHours}:0${myMinutes}:${mySeconds}`
+    }
+    if (myHours < 10 && myMinutes >= 10 && myMinutes >= 10){
+    document.getElementById('myTimeOutput').innerHTML = `0${myHours}:${myMinutes}:${mySeconds}`
+    }
+    if (myHours >= 10 && myMinutes >= 10 && myMinutes >= 10){
     document.getElementById('myTimeOutput').innerHTML = `${myHours}:${myMinutes}:${mySeconds}`
+    }
   } 
   setInterval(myTimeLoop, 1000);
 </script>
