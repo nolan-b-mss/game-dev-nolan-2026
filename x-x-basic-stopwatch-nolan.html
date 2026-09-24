@@ -5,9 +5,9 @@
 <input type="button" value="Add 1 Hour" onclick="myAddHour()"><br>
 <input type="number" id ="myCustomValue" placeholder="Custom add">
 <select id="mySelect01">
-  <option value="mySelectSeconds">Seconds</option>
-  <option value="mySelectMinutes">Minutes</option>
-  <option value="mySelectHours">Hours</option>
+  <option value="customSeconds">Seconds</option>
+  <option value="customMinutes">Minutes</option>
+  <option value="customHours">Hours</option>
 </select>
 <input type="button" value="Add custom amount" onclick="myAddCustom()">
 <script>
@@ -39,13 +39,13 @@
   function myAddCustom(){
     let myCustomTimeValue = parseFloat(document.getElementById('myCustomValue').value)
     let myCustomSelect = document.getElementById('mySelect01').value
-    if (myCustomSelect === "mySelectSeconds"){
+    if (myCustomSelect === "customSeconds"){
       mySeconds += myCustomTimeValue;
     }
-    if (myCustomSelect === "mySelectMinutes"){
+    if (myCustomSelect === "customMinutes"){
       myMinutes += myCustomTimeValue;
     }
-    if (myCustomSelect === "mySelectHours"){
+    if (myCustomSelect === "customHours"){
       myHours += myCustomTimeValue;
     }
     console.log(`Added ${myCustomTimeValue} ${document.getElementById('mySelect01').value}`)
