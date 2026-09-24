@@ -51,15 +51,16 @@ Internal Hours, minutes and seconds
     console.log(`Added ${myCustomTimeValue} ${document.getElementById('mySelect01').value}`)
     myTimeUpdate();
   }
-  function myTimeUpdate(){
+  function myConstantCheck(){
     if (mySeconds < 0){mySeconds = 0}
     if (myMinutes < 0){myMinutes = 0}
     if (myHours < 0){myHours = 0}
     if (mySeconds > 59){myMinutes += 1; mySeconds -= 60;}
     if (myMinutes > 59){myHours += 1; myMinutes -= 60; mySeconds -= 60;}
     if (myHours > 23){myHours -= 23; myMinutes -= 60; mySeconds -= 60;}
+  }
+  function myTimeUpdate(){
     document.getElementById('myRawTime').innerHTML = `${myHours}, ${myMinutes}, ${mySeconds}`
-  //                                        ---system for zeroes---
   //all<10
     if (myHours < 10 && myMinutes < 10 && mySeconds < 10){
     document.getElementById('myTimeOutput').innerHTML = `0${myHours}:0${myMinutes}:0${mySeconds}`
@@ -94,4 +95,5 @@ Internal Hours, minutes and seconds
     }
   }
   setInterval(myTimeLoop, 1000);
+  setInterval(myConstantCheck, 10);
 </script>
