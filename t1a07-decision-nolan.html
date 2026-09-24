@@ -62,11 +62,12 @@ New stuff below this:<br>
 }"><br>
 <div id="myDiv02"><br>
 Enter a number grade
-<input type="range" id="myRange01" min="0" max="100" value="50" oninput="{myGradeUpdate()}">
+<input type="range" id="myRange01" min="0" max="100" value="50" oninput="{myGradeUpdate()}"><div id="myRangeOutput">...</div>
 <div id="myDiv03">C</div> Your letter grade
 <script>
   let myGradeValue = parseFloat(document.getElementById('myRange01').value)
   function myGradeUpdate(){
+    document.getElementById('myRangeOutput').innerHTML = `${myGradeValue}`
     if (myGradeValue >= 86){document.getElementById('myDiv03').innerHTML = `A`}
     else if (myGradeValue <= 85 && myGradeValue >= 73){document.getElementById('myDiv03').innerHTML = `B`}
     else if (myGradeValue <= 72 && myGradeValue >= 67){document.getElementById('myDiv03').innerHTML = `C+`}
