@@ -23,26 +23,21 @@
   }
   function myAddSeconds(){
     mySeconds += 30;
-    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
-    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
     myTimeUpdate();
   }
   function myAddMinutes(){
     myMinutes += 30;
-    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
-    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
     myTimeUpdate();
   }
   function myAddHour(){
     myHours += 1;
-    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
-    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
     myTimeUpdate();
   }
   function myTimeUpdate(){
+    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
+    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
+    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
+    
     if (myHours < 10 && myMinutes < 10 && mySeconds < 10){
     document.getElementById('myTimeOutput').innerHTML = `0${myHours}:0${myMinutes}:0${mySeconds}`
     }
