@@ -23,14 +23,32 @@
   }
   function myAddSeconds(){
     mySeconds += 30;
+    console.log('Added 30 seconds')
     myTimeUpdate();
   }
   function myAddMinutes(){
     myMinutes += 30;
+    console.log('Added 30 minutes')
     myTimeUpdate();
   }
   function myAddHour(){
     myHours += 1;
+    console.log('Added one hour')
+    myTimeUpdate();
+  }
+  function myAddCustom(){
+    let myCustomTimeValue = parseFloat(document.getElementById('myCustomValue').value)
+    let myCustomSelect = document.getElementById('mySelect01').value
+    if (myCustomSelect === "mySelectSeconds"){
+      mySeconds += myCustomTimeValue;
+    }
+    if (myCustomSelect === "mySelectMinutes"){
+      myMinutes += myCustomTimeValue;
+    }
+    if (myCustomSelect === "mySelectHours"){
+      myHours += myCustomTimeValue;
+    }
+    console.log(`Added ${myCustomTimeValue} ${document.getElementById('mySelect01').value}`)
     myTimeUpdate();
   }
   function myTimeUpdate(){
@@ -50,19 +68,6 @@
     if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
     if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
   }
-  function myAddCustom(){
-    let myCustomTimeValue = parseFloat(document.getElementById('myCustomValue').value)
-    let myCustomSelect = document.getElementById('mySelect01').value
-    if (myCustomSelect === "mySelectSeconds"){
-      mySeconds += myCustomTimeValue;
-    }
-    if (myCustomSelect === "mySelectMinutes"){
-      myMinutes += myCustomTimeValue;
-    }
-    if (myCustomSelect === "mySelectHours"){
-      myHours += myCustomTimeValue;
-    }
-    myTimeUpdate();
-  }
+
   setInterval(myTimeLoop, 1000);
 </script>
