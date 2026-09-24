@@ -10,7 +10,7 @@
   <option value="customHours">Hours</option>
 </select>
 <input type="button" value="Add custom amount" onclick="myAddCustom()"><br>
-<div id="myRawHours">0</div><div id="myRawMinutes">0</div><div id="myRawSeconds">0</div><br>
+<div id="myRawTime">0</div>
 Internal Hours, minutes and seconds
 <script>
   let mySeconds = 0;
@@ -58,9 +58,7 @@ Internal Hours, minutes and seconds
     if (mySeconds > 59){myMinutes += 1; mySeconds -= 60;}
     if (myMinutes > 59){myHours += 1; myMinutes -= 60; mySeconds -= 60;}
     if (myHours > 23){myHours -= 23; myMinutes -= 60; mySeconds -= 60;}
-    document.getElementById('myRawHours').innerHTML = `${myHours}`
-    document.getElementById('myRawMinutes').innerHTML = `${myMinutes}`
-    document.getElementById('myRawSeconds').innerHTML = `${mySeconds}`
+    document.getElementById('myRawTime').innerHTML = `${myHours}, ${myMinutes}, ${mySeconds}`
   //                                        ---system for zeroes---
   //all<10
     if (myHours < 10 && myMinutes < 10 && mySeconds < 10){
