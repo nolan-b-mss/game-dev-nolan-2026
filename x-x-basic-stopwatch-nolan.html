@@ -56,8 +56,8 @@ Internal Hours, minutes and seconds
     if (myMinutes < 0){myMinutes = 0}
     if (myHours < 0){myHours = 0}
     if (mySeconds > 59){myMinutes += 1; mySeconds -= 60;}
-    if (myMinutes > 59){myHours += 1; myMinutes -= 60; mySeconds -= 60;}
-    if (myHours > 23){myHours -= 23; myMinutes -= 60; mySeconds -= 60;}
+    if (myMinutes > 59){myHours += 1; myMinutes -= 60;}
+    if (myHours > 23){myHours -= 24;}
     document.getElementById('myRawTime').innerHTML = `${myHours}, ${myMinutes}, ${mySeconds}`
   //all<10
     if (myHours < 10 && myMinutes < 10 && mySeconds < 10){
