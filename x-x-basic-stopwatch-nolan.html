@@ -16,23 +16,23 @@
   }
   function myAddSeconds(){
     mySeconds += 30;
-    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
-    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
+    if (mySeconds > 59){myMinutes += 1;}
+    if (myMinutes > 59){myHours += 1;}
+    if (myHours > 23){myHours = 0;}
     myTimeUpdate();
   }
   function myAddMinutes(){
     myMinutes += 30;
-    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
-    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
+    if (mySeconds > 59){myMinutes += 1;}
+    if (myMinutes > 59){myHours += 1;}
+    if (myHours > 23){myHours = 0;}
     myTimeUpdate();
   }
   function myAddHour(){
     myHours += 1;
     if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
-    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
+    if (myMinutes > 59){myHours += 1;}
+    if (myHours > 23){myHours = 0;}
     myTimeUpdate();
   }
   function myTimeUpdate(){
