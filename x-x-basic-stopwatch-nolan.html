@@ -39,7 +39,7 @@
   function myAddCustom(){
     let myCustomTimeValue = parseFloat(document.getElementById('myCustomValue').value)
     let myCustomSelect = document.getElementById('mySelect01').value
-    if (isNaN(myCustomTimeValue)){console.log(`Couldn't add time, myCustomTimeValue returned as ${myCustomTimeValue}`)}
+    if (isNaN(myCustomTimeValue)){console.log(`Couldn't add time, myCustomTimeValue returned as ${myCustomTimeValue}`);return;}
     if (myCustomSelect === "customSeconds"){
       mySeconds += myCustomTimeValue;
     }
