@@ -60,4 +60,18 @@ New stuff below this:<br>
   document.getElementById('myDiv02').innerHTML = `No. Your name is ${myFName01} ${myFName02}.`
   }
 }"><br>
-<div id="myDiv02">
+<div id="myDiv02"><br>
+Enter a number grade
+<input type="range" id="myRange01" min="0" max="100" value="50" oninput="{myGradeUpdate()}">
+<div id="myDiv03">C</div> Your letter grade
+<script>
+  let myGradeValue = parseFloat(document.getElementById('myRange01').value)
+  function myGradeUpdate(){
+    if (myGradeValue >= 86){document.getElementById('myDiv03').innerHTML = `A`}
+    else if (myGradeValue <= 85 && myGradeValue >= 73){document.getElementById('myDiv03').innerHTML = `B`}
+    else if (myGradeValue <= 72 && myGradeValue >= 67){document.getElementById('myDiv03').innerHTML = `C+`}
+    else if (myGradeValue <= 66 && myGradeValue >= 60){document.getElementById('myDiv03').innerHTML = `C`}
+    else if (myGradeValue <= 59 && myGradeValue >= 50){document.getElementById('myDiv03').innerHTML = `C-`}
+    else if (myGradeValue < 50){document.getElementById('myDiv03').innerHTML = `F`}
+  }
+</script>
