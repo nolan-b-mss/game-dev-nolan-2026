@@ -16,9 +16,6 @@
   let myHours = 0;
   function myTimeLoop(){
     mySeconds += 1
-    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
-    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
     myTimeUpdate();
   }
   function myAddSeconds(){
@@ -56,9 +53,9 @@
     if (mySeconds < 0){mySeconds = 0}
     if (myMinutes < 0){myMinutes = 0}
     if (myHours < 0){myHours = 0}
-    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
-    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
+    if (mySeconds > 59){myMinutes += 1; mySeconds -= 60;}
+    if (myMinutes > 59){myHours += 1; myMinutes -= 60; mySeconds -= 60;}
+    if (myHours > 23){myHours -= 23; myMinutes -= 60; mySeconds -= 60;}
   //                                        ---system for zeroes---
   //all<10
     if (myHours < 10 && myMinutes < 10 && mySeconds < 10){
