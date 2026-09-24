@@ -1,8 +1,15 @@
 <h1 align=center.>x-x-basic-stopwatch-nolan.html</h1>
-<div id="myTimeOutput">00:00:00</div>
+<div id="myTimeOutput" style="font-size:24px;">00:00:00</div>
 <input type="button" value="Add 30 Seconds" onclick="myAddSeconds()">
 <input type="button" value="Add 30 Minutes" onclick="myAddMinutes()">
-<input type="button" value="Add 1 Hour" onclick="myAddHour()">
+<input type="button" value="Add 1 Hour" onclick="myAddHour()"><br>
+<input type="number" id ="myCustomValue" placeholder="Custom add">
+<select id="mySelect01">
+  <option value="mySelectSeconds">Seconds</option>
+  <option value="mySelectMinutes">Minutes</option>
+  <option value="mySelectHours">Hours</option>
+</select>
+<input type="button" value="Add custom amount" onclick="myAddCustom()">
 <script>
   let mySeconds = 0;
   let myMinutes = 0;
@@ -16,23 +23,23 @@
   }
   function myAddSeconds(){
     mySeconds += 30;
-    if (mySeconds > 59){myMinutes += 1;}
-    if (myMinutes > 59){myHours += 1;}
-    if (myHours > 23){myHours = 0;}
+    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
+    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
+    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
     myTimeUpdate();
   }
   function myAddMinutes(){
     myMinutes += 30;
-    if (mySeconds > 59){myMinutes += 1;}
-    if (myMinutes > 59){myHours += 1;}
-    if (myHours > 23){myHours = 0;}
+    if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
+    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
+    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
     myTimeUpdate();
   }
   function myAddHour(){
     myHours += 1;
     if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
-    if (myMinutes > 59){myHours += 1;}
-    if (myHours > 23){myHours = 0;}
+    if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
+    if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
     myTimeUpdate();
   }
   function myTimeUpdate(){
@@ -48,6 +55,20 @@
     if (myHours >= 10 && myMinutes >= 10 && mySeconds >= 10){
     document.getElementById('myTimeOutput').innerHTML = `${myHours}:${myMinutes}:${mySeconds}`
     }
-  } 
+  }
+  function myAddCustom(){
+    let myCustomTimeValue = parseFloat(document.getElementById('myCustomValue').value)
+    let myCustomSelect = document.getElementById('mySelect01').value
+    if (myCustomSelect === "mySelectSeconds"){
+      mySeconds += myCustomTimeValue;
+    }
+    if (myCustomSelect === "mySelectMinutes"){
+      myMinutes += myCustomTimeValue;
+    }
+    if (myCustomSelect === "mySelectHours"){
+      myHours += myCustomTimeValue;
+    }
+    myTimeUpdate();
+  }
   setInterval(myTimeLoop, 1000);
 </script>
