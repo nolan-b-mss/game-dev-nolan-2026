@@ -36,16 +36,16 @@
     myTimeUpdate();
   }
   function myTimeUpdate(){
-    if (myHours < 10 && myMinutes < 10 && myMinutes < 10){
+    if (myHours < 10 && myMinutes < 10 && mySeconds < 10){
     document.getElementById('myTimeOutput').innerHTML = `0${myHours}:0${myMinutes}:0${mySeconds}`
     }
-    if (myHours < 10 && myMinutes < 10 && myMinutes >= 10){
+    if (myHours < 10 && myMinutes < 10 && mySeconds >= 10){
     document.getElementById('myTimeOutput').innerHTML = `0${myHours}:0${myMinutes}:${mySeconds}`
     }
-    if (myHours < 10 && myMinutes >= 10 && myMinutes >= 10){
+    if (myHours < 10 && myMinutes >= 10 && mySeconds >= 10){
     document.getElementById('myTimeOutput').innerHTML = `0${myHours}:${myMinutes}:${mySeconds}`
     }
-    if (myHours >= 10 && myMinutes >= 10 && myMinutes >= 10){
+    if (myHours >= 10 && myMinutes >= 10 && mySeconds >= 10){
     document.getElementById('myTimeOutput').innerHTML = `${myHours}:${myMinutes}:${mySeconds}`
     }
   } 
