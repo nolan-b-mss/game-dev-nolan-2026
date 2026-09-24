@@ -59,18 +59,38 @@
     if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
     if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
     if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
-  
+  //                                        ---system for zeroes---
+  //all<10
     if (myHours < 10 && myMinutes < 10 && mySeconds < 10){
     document.getElementById('myTimeOutput').innerHTML = `0${myHours}:0${myMinutes}:0${mySeconds}`
     }
+  //all>10
+    if (myHours >= 10 && myMinutes >= 10 && mySeconds >= 10){
+    document.getElementById('myTimeOutput').innerHTML = `${myHours}:${myMinutes}:${mySeconds}`
+    }
+  //seconds>10
     if (myHours < 10 && myMinutes < 10 && mySeconds >= 10){
     document.getElementById('myTimeOutput').innerHTML = `0${myHours}:0${myMinutes}:${mySeconds}`
     }
+  //minutes>10
+    if (myHours < 10 && myMinutes >= 10 && mySeconds < 10){
+    document.getElementById('myTimeOutput').innerHTML = `0${myHours}:${myMinutes}:0${mySeconds}`
+    }
+  //hours>10
+    if (myHours >= 10 && myMinutes < 10 && mySeconds < 10){
+    document.getElementById('myTimeOutput').innerHTML = `${myHours}:0${myMinutes}:0${mySeconds}`
+    }
+  //seconds<10
+    if (myHours >= 10 && myMinutes >= 10 && mySeconds < 10){
+    document.getElementById('myTimeOutput').innerHTML = `${myHours}:${myMinutes}:0${mySeconds}`
+    }
+  //minutes<10
+    if (myHours >= 10 && myMinutes < 10 && mySeconds >= 10){
+    document.getElementById('myTimeOutput').innerHTML = `${myHours}:0${myMinutes}:${mySeconds}`
+    }
+  //hours<10
     if (myHours < 10 && myMinutes >= 10 && mySeconds >= 10){
     document.getElementById('myTimeOutput').innerHTML = `0${myHours}:${myMinutes}:${mySeconds}`
-    }
-    if (myHours >= 10 && myMinutes >= 10 && mySeconds >= 10){
-    document.getElementById('myTimeOutput').innerHTML = `${myHours}:${myMinutes}:${mySeconds}`
     }
   }
   setInterval(myTimeLoop, 1000);
