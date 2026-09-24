@@ -39,6 +39,7 @@
   function myAddCustom(){
     let myCustomTimeValue = parseFloat(document.getElementById('myCustomValue').value)
     let myCustomSelect = document.getElementById('mySelect01').value
+    if (isNaN(myCustomTimeValue)){console.log(`Couldn't add time, myCustomTimeValue returned as ${myCustomTimeValue}`)}
     if (myCustomSelect === "customSeconds"){
       mySeconds += myCustomTimeValue;
     }
@@ -52,6 +53,9 @@
     myTimeUpdate();
   }
   function myTimeUpdate(){
+    if (mySeconds < 0){mySeconds = 0}
+    if (myMinutes < 0){myMinutes = 0}
+    if (myHours < 0){myHours = 0}
     if (mySeconds > 59){myMinutes += 1; mySeconds = 0;}
     if (myMinutes > 59){myHours += 1; myMinutes = 0; mySeconds = 0;}
     if (myHours > 23){myHours = 0; myMinutes = 0; mySeconds = 0;}
