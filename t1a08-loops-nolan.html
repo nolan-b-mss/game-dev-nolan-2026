@@ -44,3 +44,21 @@ weird number: <input id="myWeird" type=number value="2" ><br>
   }">
 
   <div id="myDiv01"><font color = red>...</font></div>
+
+<hr>
+New stuff:<br>
+Maximum: <input id='myMax02' type=number value=10><br>
+Another weird number: <input id='myWeird02' type=number value=2><br>
+<input type=button value="Change step amount" onclick="{
+  document.getElementById('myDiv02').innerHTML = ''
+  let myMaxValue = parseInt(document.getElementById('myMax02').value)
+  let myStepValue = parseInt(document.getElementById('myWeird02').value)
+  let myTemp02 = '';
+
+  for (let myLoop02 = 0; myLoop <= myMaxValue; myLoop02 += myStepValue){
+    myTemp += 'Loop number: ' + myLoop + '<br>';
+  }
+
+  document.getElementById('myDiv02').innerHTML = myTemp;
+}">
+<div id="myDiv02">...</div>
