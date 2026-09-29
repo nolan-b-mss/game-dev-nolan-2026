@@ -55,8 +55,8 @@ Another weird number: <input id='myWeird02' type=number value=2><br>
   let myStepValue = parseInt(document.getElementById('myWeird02').value)
   let myTemp02 = '';
 
-  for (let myLoop02 = 0; myLoop <= myMaxValue; myLoop02 += myStepValue){
-    myTemp += 'Loop number: ' + myLoop + '<br>';
+  for (let myLoop02 = 0; myLoop02 <= myMaxValue; myLoop02 += myStepValue){
+    myTemp += 'Loop number: ' + myLoop02 + '<br>';
   }
 
   document.getElementById('myDiv02').innerHTML = myTemp;
