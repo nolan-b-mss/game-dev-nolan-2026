@@ -61,4 +61,18 @@ Another weird number: <input id='myWeird02' type=number value=2><br>
 
   document.getElementById('myDiv02').innerHTML = myTemp02;
 }">
+<input type=button value="Basic While Loop" onclick="{
+  let myMaxValue = parseInt(document.getElementById('myMax02').value)
+  let myWeirdValue = parseInt(document.getElementById('myWeird02').value)
+  let myTemp02 = '';
+  let myLoop02 = 0
+
+  while (myLoop02 <= myMaxValue){
+    if (myLoop02 >= myWeirdValue){
+      myTemp02 += ' special '
+    }
+  myLoop02 += 1;
+  myTemp02 += 'Loop number: ' + myLoop02 + '<br>';
+  }
+  
 <div id="myDiv02">...</div>
