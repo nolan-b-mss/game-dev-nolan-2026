@@ -76,4 +76,18 @@ Another weird number: <input id='myWeird02' type=number value=2><br>
   }
   document.getElementById('myDiv02').innerHTML = myTemp02;
 }">
+<input type=button value="Odd number identifier" onclick="{
+    document.getElementById('myDiv02').innerHTML = ''
+    let myTemp02 = ''
+
+    let myMaxValue = parseInt(document.getElementById('myMax02').value)
+
+    for (let myLoop02 = 0; myLoop02 <= myMaxValue; myLoop02++ ){
+      if (myLoop02 % 2 !== 0){
+        myTemp02 += 'Odd Number, '
+      }
+    myTemp02 += 'Loop number: ' + myLoop02 + '<br>'
+    }
+    document.getElementById('myDiv02').innerHTML = myTemp02
+  }">
 <div id="myDiv02">...</div>
