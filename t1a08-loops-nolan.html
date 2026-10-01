@@ -71,8 +71,9 @@ Another weird number: <input id='myWeird02' type=number value=2><br>
     if (myLoop02 >= myWeirdValue){
       myTemp02 += ' special '
     }
-  myLoop02 += 1;
-  myTemp02 += 'Loop number: ' + myLoop02 + '<br>';
+    myTemp02 += 'Loop number: ' + myLoop02 + '<br>';
+    myLoop02 += 1;
   }
-  
+  document.getElementById('myDiv02').innerHTML = myTemp02;
+}">
 <div id="myDiv02">...</div>
