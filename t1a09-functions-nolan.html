@@ -22,7 +22,7 @@
         myVowelAmount += 1
       }
     }
-    document.getElementById('myDiv02').innerHTML = `String ${myStringIn01} contains ${myVowelAmount} vowels.`
+    document.getElementById('myDiv02').innerHTML = `String "${myStringIn01}" contains ${myVowelAmount} vowels.`
   }
 </script>
 
@@ -44,5 +44,5 @@ Information can also be passed to functions (that's more advanced).
 <hr>
 New stuff below this<br>
 <input type=text id="myString01" value="string goes here"><br>
-<input type=button value="reverseString" onclick="myReverseString()">  <br>
+<input type=button value="myReverseString" onclick="myReverseString()"><input type=button value="myVowelCount" onclick="myVowelCount()">  <br>
 <div id="myDiv02">...</div>
