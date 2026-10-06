@@ -1,4 +1,5 @@
 <script>
+  let myVowels = ['a', 'e', 'i', 'o', 'u'];
   function myExampleFunction(){
     let myIn01 = parseInt(document.getElementById('myText01').value)
     let mySum = myIn01 + myIn01
@@ -11,6 +12,17 @@
     mySplitString.reverse()
     let myStringOut01 = mySplitString.join('')
     document.getElementById('myDiv02').innerHTML = `${myStringOut01}`
+  }
+  function myVowelCount(){
+    let myVowelAmount = 0;
+    let myStringIn01 = document.getElementById('myString01').value
+    let mySplitString = myStringIn01.split('')
+    for (let i = 0; i < mySplitString.length; i++) {
+      if (myVowels.includes(mySplitString[i])) {
+        myVowelAmount += 1
+      }
+    }
+    document.getElementById('myDiv02').innerHTML = `String ${myStringIn01} contains ${myVowelAmount} vowels.`
   }
 </script>
 
