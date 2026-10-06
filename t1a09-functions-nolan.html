@@ -26,7 +26,7 @@
   }
   function myCelsiusConvert(){
     let myTempF = parseFloat(document.getElementById('myFahrenheit').value)
-    let myTempC = ((fahrenheit - 32) / 1.8).toFixed(0)
+    let myTempC = ((myTempF - 32) / 1.8).toFixed(0)
     document.getElementById('myDiv02').innerHTML = `${myTempF}°F is ${myTempC}°C`
   }
 </script>
