@@ -2,8 +2,15 @@
   function myExampleFunction(){
     let myIn01 = parseInt(document.getElementById('myText01').value)
     let mySum = myIn01 + myIn01
-    let myReply = myIn01 + ' + ' + myIn01 + ' = ' + mySum
+    let myReply = `${myIn01} + ${myIn01} = ${mySum}`
     return myReply
+  }
+  function myReverseString(){
+    let myStringIn01 = document.getElementById('myString01').value
+    let mySplitString = myString01.split('')
+    mySplitString.reverse()
+    let myStringOut01 = mySplitString.join('')
+    document.getElementById('myDiv02').innerHTML = `${myStringOut01}`
   }
 </script>
 
@@ -24,3 +31,6 @@ Information can also be passed to functions (that's more advanced).
 <div id="myDiv01">...</div>
 <hr>
 New stuff below this
+<input type=text id="myString01" value="string goes here"><br>
+<input type=button value="reverseString" onclick=myReverseString()">  <br>
+<div id="myDiv02">...</div>
