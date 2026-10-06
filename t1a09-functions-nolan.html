@@ -24,9 +24,10 @@
     }
     document.getElementById('myDiv02').innerHTML = `String "${myStringIn01}" contains ${myVowelAmount} vowels.`
   }
-  function myCelsiusConvert(fahrenheit){
-    let myTempC = (fahrenheit - 32) / 1.8
-    document.getElementById('myDiv02').innerHTML = `${fahrenheit}°F is ${myTempC}°C`
+  function myCelsiusConvert(){
+    let myTempF = parseFloat(document.getElementById('myFahrenheit').value)
+    let myTempC = (myTempF - 32) / 1.8
+    document.getElementById('myDiv02').innerHTML = `${myTempF}°F is ${myTempC}°C`
   }
 </script>
 
@@ -50,5 +51,5 @@ New stuff below this<br>
 <input type=text id="myString01" value="string goes here"><br>
 <input type=button value="myReverseString" onclick="myReverseString()"><input type=button value="myVowelCount" onclick="myVowelCount()">  <br>
 <div id="myDiv02">...</div><br>
-<input type=number id="fahrenheit" value="350">degrees in temperature, fahrenheit<br>
+<input type=number id="myFahrenheit" value="350">degrees in temperature, fahrenheit<br>
 <input type=button value="myCelsiusConvert" onclick="myCelsiusConvert(fahrenheit)">
