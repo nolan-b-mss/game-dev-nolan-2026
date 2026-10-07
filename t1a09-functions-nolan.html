@@ -29,6 +29,11 @@
     let myTempC = ((myTempF - 32) / 1.8).toFixed(0)
     document.getElementById('myDiv02').innerHTML = `${myTempF}°F is ${myTempC}°C`
   }
+  function myStringAdder(){
+    let myAddedString = document.getElementById('myAddString').value
+    let mySplitString = myAddedString.split(' ')
+    mySplitString.push(myAddedString)
+    document.getElementById('myDiv02').innerHTML = mySplitString
 </script>
 
 <h2 align=center>t1a09-functions-nolan.html</h2>
@@ -48,8 +53,10 @@ Information can also be passed to functions (that's more advanced).
 <div id="myDiv01">...</div>
 <hr>
 New stuff below this<br>
-<input type=text id="myString01" value="string goes here"><br>
+<input type=text id="myString01" value="this is myString01"><br>
 <input type=button value="myReverseString" onclick="myReverseString()"><input type=button value="myVowelCount" onclick="myVowelCount()">  <br>
 <div id="myDiv02">...</div><br>
-<input type=number id="myFahrenheit" value="350">degrees in temperature, fahrenheit<br>
-<input type=button value="myCelsiusConvert" onclick="myCelsiusConvert()">
+<input type=number id="myFahrenheit" value="350">degrees in fahrenheit<br>
+<input type=button value="myCelsiusConvert" onclick="myCelsiusConvert()"><br>
+<input id="myAddString" type=text value="added word">This will add to myString01<br>
+<input type=button value="myStringAdder" onclick="myStringAdder()}"><br>
