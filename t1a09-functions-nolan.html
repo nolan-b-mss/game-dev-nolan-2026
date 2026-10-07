@@ -31,11 +31,8 @@
   }
   function myStringAdder(){
     let myStringIn01 = document.getElementById('myString01').value
-    let myAddedString = document.getElementById('myAddString').value
-    let mySplitString = myStringIn01.split('')
-    mySplitString.push(myAddedString)
-    let myFinalString = mySplitString.join(' ')
-    document.getElementById('myDiv02').innerHTML = myFinalString
+    let myStringIn02 = document.getElementById('myString02').value
+    document.getElementById('myDiv02').innerHTML = `${myStringIn01} ${myStringIn02}`
   }
 </script>
 
@@ -61,5 +58,5 @@ New stuff below this<br>
 <div id="myDiv02">...</div><br>
 <input type=number id="myFahrenheit" value="350">degrees in fahrenheit<br>
 <input type=button value="myCelsiusConvert" onclick="myCelsiusConvert()"><br>
-<input id="myAddString" type=text value="added word">This will add to myString01<br>
+<input id="myString02" type=text value="added word">This will add to myString01<br>
 <input type=button value="myStringAdder" onclick="myStringAdder()"><br>
