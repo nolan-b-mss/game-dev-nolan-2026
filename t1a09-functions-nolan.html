@@ -30,10 +30,12 @@
     document.getElementById('myDiv02').innerHTML = `${myTempF}°F is ${myTempC}°C`
   }
   function myStringAdder(){
+    let myStringIn01 = document.getElementById('myString01').value
     let myAddedString = document.getElementById('myAddString').value
-    let mySplitString = myAddedString.split(' ')
+    let mySplitString = myStringIn01.split('')
     mySplitString.push(myAddedString)
-    document.getElementById('myDiv02').innerHTML = mySplitString
+    let myFinalString = mySplitString.join(' ')
+    document.getElementById('myDiv02').innerHTML = myFinalString
   }
 </script>
 
