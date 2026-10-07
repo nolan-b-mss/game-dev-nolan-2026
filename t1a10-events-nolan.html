@@ -49,3 +49,9 @@ New stuff below this:<br>
 
 <div draggable="true" ondragstart="document.getElementById('myDiv09').innerHTML = 'Dragging started';">Drag this text</div>
 <div id="myDiv09">...</div><br>
+
+<div oncopy="{document.getElementById('myDiv10').innerHTML = 'You copied the text'}">Copy this text</div>
+<div id="myDiv10">...</div><br>
+
+<textarea onpaste="{document.getElementById('myDiv11').innerHTML = 'You pasted the text'}" placeholder = "Paste that text here" width="300px" height="150px"></textarea>
+<div id="myDiv11">...</div><br>
