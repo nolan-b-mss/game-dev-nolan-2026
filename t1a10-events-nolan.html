@@ -55,3 +55,18 @@ New stuff below this:<br>
 
 <textarea onpaste="{document.getElementById('myDiv11').innerHTML = 'You pasted the text'}" placeholder = "Paste that text here" width="300px" height="150px"></textarea>
 <div id="myDiv11">...</div><br>
+
+<div oncontextmenu="document.getElementById('myDiv12').innerHTML = 'Right-clicked!'; return false;">Right-click this text</div>
+<div id="myDiv12">...</div><br>
+
+<div onwheel="document.getElementById('myDiv13').innerHTML = 'Scrolled wheel!';">Scroll your mouse wheel over this box</div>
+<div id="myDiv13">...</div><br>
+
+<input type="text" oninput="document.getElementById('myDiv14').innerHTML = 'Live input: ' + this.value;" placeholder="Type live (oninput)">
+<div id="myDiv14">...</div><br>
+
+<input type="text" value="Highlight this text" onselect="document.getElementById('myDiv15').innerHTML = 'You selected text!';" placeholder="Highlight text here">
+<div id="myDiv15">...</div><br>
+
+<div style="height: 50px; overflow-y: scroll; border: 1px solid #ccc;" onscroll="document.getElementById('myDiv16').innerHTML = 'Scrolled inside the box!';">Scroll inside this box<br>Line 1<br>Line 2<br>Line 3<br>Line 4</div>
+<div id="myDiv16">...</div><br>
