@@ -1,0 +1,107 @@
+<h2 align=center>t1a11-arrays-nolan.html</h2>
+
+<h4> Example working array code</h4>
+
+Max Array Entry: <input type=number id="myText01" value="3"><br>
+
+<input type=button value="Example onClick" onClick="{
+  let myTemp = document.getElementById('myText01').value
+  let mySum = ''
+  document.getElementById('myDiv01').innerHTML = ' '
+
+  let myArray = new Array()
+  myArray[0] = 'Fred'
+  myArray[1] = 'Mary'
+  myArray[2] = 'Lizzy'
+
+  for (let myLoop=0; myLoop < myTemp; myLoop++){
+    mySum += ' Loop #: ' + myLoop + ' array entry: ' + myArray[myLoop] + '<br>'
+  }
+  document.getElementById('myDiv01').innerHTML = mySum
+}">
+
+<div id="myDiv01">...</div>
+<br>
+You do more arrays that do different things, hopefully with some numbers.<br>
+<hr>
+New stuff below this:<br>
+
+Enter a multiplier/limit for the numbers: <input type=number id="numInput01" value="5"><br>
+
+<input type=button value="Generate Numbers Array" onClick="{
+  let limit = Number(document.getElementById('numInput01').value);
+  let outputText = '';
+  let numberArray = [];
+  let totalSum = 0;
+
+  for (let i = 0; i < limit; i++) {
+    numberArray[i] = (i + 1) * 10;
+  }
+
+  for (let i = 0; i < numberArray.length; i++) {
+    outputText += 'Index [' + i + '] => Value: ' + numberArray[i] + '<br>';
+    totalSum += numberArray[i];
+  }
+
+  let average = totalSum / numberArray.length;
+
+  outputText += '<hr>';
+  outputText += '<b>Total Array Entries:</b> ' + numberArray.length + '<br>';
+  outputText += '<b>Sum of Numbers:</b> ' + totalSum + '<br>';
+  outputText += '<b>Average Value:</b> ' + average + '<br>';
+  outputText += '<b>Max Value:</b> ' + numberArray[numberArray.length - 1] + '<br>';
+
+  document.getElementById('numDiv01').innerHTML = outputText;
+}">
+
+<div id="numDiv01">...</div>
+
+Type a name to search for (e.g., Fred, Alex, Sarah, Mary): <input type=text id="searchBox01" value="Mary"><br>
+
+<input type=button value="Search Array" onClick="{
+  let searchTerm = document.getElementById('searchBox01').value.toLowerCase();
+  let nameArray = ['Fred', 'Mary', 'Lizzy', 'Alex', 'Sarah', 'David'];
+  let foundMatch = false;
+  let resultText = 'Searching through: ' + nameArray.join(', ') + '<br><br>';
+
+  for (let i = 0; i < nameArray.length; i++) {
+    // Check if the array entry matches the search term (case-insensitive)
+    if (nameArray[i].toLowerCase() === searchTerm) {
+      resultText += '<span style=&quot;color: green;&quot;><b>Match found!</b> Index [' + i + '] is ' + nameArray[i] + '</span><br>';
+      foundMatch = true;
+    }
+  }
+
+  if (!foundMatch) {
+    resultText += '<span style=&quot;color: red;&quot;>No match found for &quot;' + searchTerm + '&quot;.</span>';
+  }
+
+  document.getElementById('searchDiv01').innerHTML = resultText;
+}">
+
+<div id="searchDiv01">...</div>
+<br>
+
+How many random numbers? <input type=number id="randCount01" value="5"><br>
+
+<input type=button value="Generate & Analyze Randoms" onClick="{
+  let count = Number(document.getElementById('randCount01').value);
+  let randArray = [];
+  let output = '';
+
+  for (let i = 0; i < count; i++) {
+    randArray[i] = Math.floor(Math.random() * 100) + 1;
+  }
+
+  output += '<b>Original Array:</b> ' + randArray.join(', ') + '<br>';
+
+  randArray.sort(function(a, b) { return a - b; });
+
+  output += '<b>Sorted Array (Ascending):</b> ' + randArray.join(', ') + '<br>';
+  output += '<b>Lowest Number:</b> ' + randArray[0] + '<br>';
+  output += '<b>Highest Number:</b> ' + randArray[randArray.length - 1] + '<br>';
+
+  document.getElementById('randDiv01').innerHTML = output;
+}">
+
+<div id="randDiv01">...</div>
