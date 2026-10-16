@@ -48,7 +48,7 @@ New stuff is below this <br>
 <div id="myDiv02">...</div>
 <br>
 <input type="date" id="myDate01"><br>
-<input type="button" onclick="myHowLongAgo()" value="How long ago was this?"> <br>
+<input type="button" value="How long ago was this?" onclick="myHowLongAgo()"> <br>
 <span id="mySpan02">...</span><br>
 <script>
   function myHowLongAgo() {let myDateInput = document.getElementById('myDate01').value;
@@ -57,4 +57,27 @@ New stuff is below this <br>
                            let myDateDifference = myCurrentDate - myDate02
                            let myDateResult = myDateDifference / 86400000
                            document.getElementById('mySpan02').innerHTML = Math.floor(myDateResult) + ' Days ago'}
+</script>
+<label for="myColor01">Pick a background color: </label>
+<input type="color" id="myColor01" value="#3498db" onchange="myChangeColour()"><br><br>
+<div id="myDivColor" style="padding: 15px; border-radius: 5px; color: white; background-color: #3498db;">
+  This box changes colour
+</div>
+<script>
+  function myChangeColour() {
+    let myChosenColor = document.getElementById('myColor01').value;
+    let myColorBox = document.getElementById('myDivColor');
+    myColorBox.style.backgroundColor = myChosenColor;
+    myColorBox.innerHTML = `Colour changed to: ${myChosenColor}`;
+  }
+</script>
+<textarea id="myTextArea01" rows="4" cols="40" placeholder="Type something here..." oninput="myCountWords()"></textarea><br>
+<span id="mySpanStats">Characters: 0 | Words: 0</span>
+<script>
+  function myCountWords() {
+    let text = document.getElementById('myTextArea01').value;
+    let charCount = text.length;
+    let words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+    document.getElementById('mySpanStats').innerHTML = `Characters: ${charCount} | Words: ${words}`;
+  }
 </script>
