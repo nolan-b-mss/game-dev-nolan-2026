@@ -35,7 +35,7 @@ New stuff below this:
       
     }
     myShow(){
-  document.getElementById('myDiv02').innerHTML = 
+  document.getElementById('myDiv02').innerHTML =  
   `
   Variable 1 = ${this.myVar01}<br>
   Variable 2 = ${this.myVar02}<br>
@@ -63,4 +63,39 @@ New stuff below this:
     myNewClass.myShow()
   }
   
-}">All input fields above <b>must</b> be filled in to not use myDefault
+}">All input fields above <b>must</b> be filled in to not use myDefault<br>
+
+<div id="myDiv03">...</div>
+<input type=text id="myCarMake" placeholder="Car Make (e.g., Toyota)"><br>
+<input type=text id="myCarModel" placeholder="Car Model (e.g., Corolla)"><br>
+<input type=text id="myCarYear" placeholder="Car Year (e.g., 2026)"><br>
+<input type=button value="Vehicle Class Button" onClick="{
+  class myVehicle {
+    constructor(passMake, passModel, passYear) {
+      this.myMake = passMake;
+      this.myModel = passModel;
+      this.myYear = passYear;
+    }
+    myShow(){
+      document.getElementById('myDiv03').innerHTML =  
+      `
+      Car Make: ${this.myMake}<br>
+      Car Model: ${this.myModel}<br>
+      Car Year: ${this.myYear}<br>
+      `
+    }
+  } // end class myVehicle
+
+  let myMake = document.getElementById('carMake').value;
+  let myModel = document.getElementById('carModel').value;
+  let myYear = document.getElementById('carYear').value;
+
+  let myCar = new myVehicle(myMake, myModel, myYear);
+  let defaultCar = new myVehicle('Honda', 'Civic', '2022');
+
+  if (myMake === '' || myModel === '' || myYear === ''){
+    defaultCar.myShow()
+  } else {
+    myCar.myShow()
+  }
+}">Fill all fields for custom car or leave blank for default car
