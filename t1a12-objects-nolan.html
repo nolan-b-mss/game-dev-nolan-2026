@@ -6,6 +6,16 @@
     'secondComp' : 'Mouse',
     'thirdComp' : 'Monitor',
   }
+  let myObject02 = {
+    'numValue' : document.getElementById('myNum01').value,
+    'textValue' : document.getElementById('myText01').value,
+    'colorValue' : document.getElementById('myColor01').value,
+  }
+  function myObject02Show(){
+    myObject02.numValue = document.getElementById('myNum01').value;
+    myObject02.textValue = document.getElementById('myText01').value;
+    myObject02.colorValue = document.getElementById('myColor01').value;
+    document.getElementById('myDiv02').innerHTML = `myObject02 properties: ${myObject02.numValue}, ${myObject02.textValue}, ${myObject02.colorValue}.`
 </script>
 
 <a href="https://www.w3schools.com/js/js_objects.asp">Good reference to Javascript Objects</a><br>
@@ -34,3 +44,7 @@ New stuff below this:
 <input type=button value="myObject01 Show" onClick="{
   document.getElementById('myDiv02').innerHTML = `myObject01 properties: ${myObject01.firstComp}, ${myObject01.secondComp}, ${myObject01.thirdComp}.`
 }">
+<input type="number" id="myNum01" value=4> myObject02.numValue<br>
+<input type="text" id="myText01" value="My text"> myObject02.textValue<br>
+<input type="color" id="myColor01" value="#3498db"> myObject02.colorValue<br>
+<input type=button value="myObject02 Show" onClick="myObject02Show()">
