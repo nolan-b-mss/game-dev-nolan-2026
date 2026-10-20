@@ -26,12 +26,12 @@ New stuff below this:
 <input type=button value="myObject01 Show" onClick="{
   document.getElementById('myDiv02').innerHTML = `myObject01 properties: ${myObject01.firstComp}, ${myObject01.secondComp}, ${myObject01.thirdComp}.`
 }">
+<br>
 <input type="number" id="myNum01" value=4> myObject02.numValue<br>
 <input type="text" id="myText01" value="My text"> myObject02.textValue<br>
 <input type="color" id="myColor01" value="#3498db"> myObject02.colorValue<br>
 <input type=button value="myObject02 Show" onClick="myObject02Show()">
 <script>
-// What might be a good idea to declare here?
   let myObject01 = {
     'firstComp' : 'Keyboard',
     'secondComp' : 'Mouse',
