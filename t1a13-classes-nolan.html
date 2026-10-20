@@ -35,7 +35,7 @@ New stuff below this:
       
     }
     myShow(){
-  document.getElementById('myDiv01').innerHTML = 
+  document.getElementById('myDiv02').innerHTML = 
   `
   Variable 1 = ${this.myVar01}<br>
   Variable 2 = ${this.myVar02}<br>
@@ -57,5 +57,10 @@ New stuff below this:
 
   myNewClass = new myClass01(passVar01, passVar02, passVar03, passVar04);
   myDefault = new myClass01('Javascript', 'abcdefg', 'NOLAN', 'this.myVar04');
-  myDefault.myShow();
+  if (passVar01 === '' || passVar02 === '' || passVar03 === '' || passVar04 === ''){
+    myDefault.myShow()
+  } else {
+    myNewClass.myShow()
+  }
+  
 }">
