@@ -20,3 +20,41 @@ Classes are both Objects that store variables (Called Properties) and Functions 
 <div id="myDiv01">...</div>
 <hr>
 New stuff below this:
+<div id="myDiv02">...</div>
+<input type=text id="myIn01" placeholder="Type anything here"><br>
+<input type=text id="myIn02" placeholder="Type anything here"><br>
+<input type=text id="myIn03" placeholder="Type anything here"><br>
+<input type=text id="myIn04" placeholder="Type anything here"><br>
+<input type=button value="Customizable Class" onClick="{
+  class myClass01 {
+    constructor(passVar01, passVar02, passVar03, passVar 04) {
+      this.myVar01 = passVar01
+      this.myVar02 = passVar02
+      this.myVar03 = passVar03
+      this.myVar04 = passVar04
+      
+    }
+    myShow(){
+  document.getElementById('myDiv01').innerHTML = 
+  `
+  Variable 1 = ${this.myVar01}<br>
+  Variable 2 = ${this.myVar02}<br>
+  Variable 3 = ${this.myVar03}<br>
+  Variable 4 = ${this.myVar04}<br>
+  `
+    }
+  } // end class myClass01
+
+  let passVar01 = document.getElementById('myIn01').value;
+  let passVar02 = document.getElementById('myIn02').value;
+  let passVar03 = document.getElementById('myIn03').value;
+  let passVar04 = document.getElementById('myIn04').value;
+
+  passVar01 = document.getElementById('myIn01').value;
+  passVar02 = document.getElementById('myIn02').value;
+  passVar03 = document.getElementById('myIn03').value;
+  passVar04 = document.getElementById('myIn04').value;
+
+  myDefault = new myClass('Javascript', 27, 'Nolan', 'this.myVar04')
+  myDefault.myShow()
+}">
