@@ -20,6 +20,7 @@
       else if (this.myOperator === "-") {this.myAnswer = this.myInput01 - this.myInput02;}
       else if (this.myOperator === "*") {this.myAnswer = this.myInput01 * this.myInput02;}
       else if (this.myOperator === "/") {this.myAnswer = this.myInput01 / this.myInput02;}
+      else {document.getElementById('myDiv02').innerHTML = `Unable to locate operator, if you are using "%" or "^", please click the button that says "Extend Calc Class (Exponents & Modulo)"`; return;}
       document.getElementById('myDiv02').innerHTML = `${this.myInput01} ${this.myOperator} ${this.myInput02} = ${this.myAnswer}.`
     }
   }// end class myEquation
@@ -46,9 +47,26 @@ Extending a pre-existing Class<br>
   let myPet = new myCat('Fluffy', 14)
   myPet.myShow()
 }">
+
+
+
 <div id="myDiv01">...</div>
 <hr>
 New stuff below this:
+<input type=button value="Extend Class Animal (Dog with Sound)" onClick="{
+  class myDogExt extends myAnimal {
+    constructor(passName, passAge, passSound) {
+      super(passName, passAge);
+      this.mySound = passSound;
+    }
+    myShow(){
+      document.getElementById('myDiv01').innerHTML = `${this.myName} is ${this.myAge} years old and says '${this.mySound}'!`
+    }
+  } // end extended class myDogExt
+
+  let myDogPet = new myDogExt('Rover', 3, 'Woof');
+  myDogPet.myShow();
+}"><br>
 <input type=number value=7 id="myIn01">
 <input type=number value=4 id="myIn02">
 <select id="myOperatorIn">
@@ -56,8 +74,11 @@ New stuff below this:
   <option value="-">-</option>
   <option value="*">*</option>
   <option value="/">/</option>
+  <option value="^">^</option>
+  <option value="%">%</option>
 </select>
 <div id="myDiv02">...</div>
+
 <input type=button value="Calculate" onClick="{
   let passInput01 = parseFloat(document.getElementById('myIn01').value)
   let passInput02 = parseFloat(document.getElementById('myIn02').value)
@@ -79,4 +100,24 @@ New stuff below this:
   
   let myNew = new myEquation02(9, 10, '+');
   myNew.myCalculate();
+}"><br>
+
+<input type=button value="Extend Calc Class (Exponents & Modulo)" onClick="{
+  class myAdvancedEquation extends myEquation {
+    myCalculate(){
+           if (this.myOperator === '+') {this.myAnswer = this.myInput01 + this.myInput02;}
+      else if (this.myOperator === '-') {this.myAnswer = this.myInput01 - this.myInput02;}
+      else if (this.myOperator === '*') {this.myAnswer = this.myInput01 * this.myInput02;}
+      else if (this.myOperator === '/') {this.myAnswer = this.myInput01 / this.myInput02;}
+      else if (this.myOperator === '^') {this.myAnswer = Math.pow(this.myInput01, this.myInput02);}
+      else if (this.myOperator === '%') {this.myAnswer = this.myInput01 % this.myInput02;}
+      document.getElementById('myDiv02').innerHTML = `Advanced Extended: ${this.myInput01} ${this.myOperator} ${this.myInput02} = ${this.myAnswer}.`
+    }
+  } // end extended class myAdvancedEquation
+
+  let passInput01 = parseFloat(document.getElementById('myIn01').value)
+  let passInput02 = parseFloat(document.getElementById('myIn02').value)
+  let passOperator = document.getElementById('myOperatorIn').value
+  let myAdv = new myAdvancedEquation(passInput01, passInput02, passOperator);
+  myAdv.myCalculate();
 }">
