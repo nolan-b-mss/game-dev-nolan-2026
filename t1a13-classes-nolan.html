@@ -102,5 +102,15 @@ New stuff below this:
 <div id="myDiv04">...</div>
 <input type=number value=16 id="myIn05">
 <input type=button value="Square Root calculator" onclick="{
-//  class myRootCalc {
-//  constructor(passValue)
+  class myRootCalc {
+  constructor(passValue) {
+    this.myValue = passValue
+  }
+  myShow(){
+  let myAnswer = Math.sqrt(this.myValue);
+  document.getElementById('myDiv04').innerHTML = `The square root of ${this.myValue} is ${myAnswer}.`
+  }
+  }
+  let passValue = document.getElementById('myIn05').value;
+  let myVal = new myRootCalc(passValue);
+}">
