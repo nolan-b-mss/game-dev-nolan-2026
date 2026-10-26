@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t1a15-mandelbrot-nolan.html</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+        body, html {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+        }
+        canvas {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            background: #000;
+            cursor: crosshair;
+        }
+        /* Top Left Hint Box */
+        .my-hint-box {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .my-hint-box:hover {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: #38bdf8;
+            transform: translateY(-1px);
+        }
+        /* Controls Box Header Top Right */
+        .my-controls-panel {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 14px 18px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 260px;
+            font-size: 13px;
+        }
+        .my-control-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .my-control-row label {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .my-control-row span {
+            color: #38bdf8;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        select, button {
+            background: #1e293b;
+            color: #f8fafc;
+            border: 1px solid #475569;
+            padding: 6px 10px;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        select:hover, button:hover {
+            border-color: #38bdf8;
+            background: #334155;
+        }
+        button.my-btn-accent {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            border: none;
+            font-weight: 600;
+        }
+        button.my-btn-accent:hover {
+            background: linear-gradient(135deg, #0369a1, #1d4ed8);
+        }
+        input[type=range] {
+            accent-color: #38bdf8;
+            cursor: pointer;
+        }
+        /* Dynamic SVG Selection Box overlay */
+        .my-overlay-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .my-preview-rect {
+            fill: rgba(56, 189, 248, 0.1);
+            stroke: #38bdf8;
+            stroke-width: 1.5;
+            stroke-dasharray: 6 4;
+            animation: dash 1s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -10;
+            }
+        }
+        /* Modal Popup */
+        .my-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .my-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .my-modal-content {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 580px;
+            padding: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .my-modal-overlay.active .my-modal-content {
+            transform: translateY(0);
+        }
+        .my-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 12px;
+        }
+        .my-modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        .my-modal-close {
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            color: #94a3b8;
+            cursor: pointer;
+        }
+        .my-modal-close:hover {
+            color: #fff;
+        }
+        .my-modal-body {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .my-formula-box {
+            background: #1e293b;
+            border-left: 4px solid #38bdf8;
+            padding: 12px 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            color: #f1f5f9;
+            margin: 8px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .my-shortcut-key {
+            background: #334155;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WebGL Canvas -->
+    <canvas id="myCanvas"></canvas>
+
+    <!-- Overlay preview rectangle for mouse tracking -->
+    <svg class="my-overlay-container">
+        <rect id="myPreviewBox" class="my-preview-rect" x="-1000" y="-1000" width="0" height="0" />
+    </svg>
+
+    <!-- Top Left Hint Button -->
+    <div class="my-hint-box" id="myHintBtn">
+        <span>💡 What is this?</span>
+    </div>
+
+    <!-- UI Panel Overlay -->
+    <div class="my-controls-panel">
+        <div class="my-control-row">
+            <label>Zoom Scale:</label>
+            <span id="myZoomDisplay">1.00x</span>
+        </div>
+        <div class="my-control-row">
+            <label>Box Scale Factor:</label>
+            <span id="myBoxScaleDisplay">0.50x</span>
+        </div>
+        <div class="my-control-row">
+            <label for="myMaxIterInput">Max Iterations:</label>
+            <span id="myIterDisplay">300</span>
+        </div>
+        <input type="range" id="myMaxIterInput" min="50" max="2500" step="50" value="300">
+        
+        <div class="my-control-row">
+            <label for="myPaletteSelect">Color Theme:</label>
+            <select id="myPaletteSelect">
+                <option value="0">Electric Neon</option>
+                <option value="1">Fire & Gold</option>
+                <option value="2">Cosmic Psychedelic</option>
+                <option value="3">Deep Ocean</option>
+                <option value="4">Ultra Smooth Rainbow</option>
+            </select>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 4px;">
+            <button id="myResetBtn" class="my-btn-accent" style="flex: 1;">Reset View</button>
+            <button id="myHelpBtn" style="flex: 1;">Help / Info</button>
+        </div>
+    </div>
+
+    <!-- Explanatory Modal -->
+    <div class="my-modal-overlay" id="myModalOverlay">
+        <div class="my-modal-content">
+            <div class="my-modal-header">
+                <h2 class="my-modal-title">Understanding the Mandelbrot Set</h2>
+                <button class="my-modal-close" id="myModalCloseBtn">&times;</button>
+            </div>
+            <div class="my-modal-body">
+                <p>The <strong>Mandelbrot Set</strong> is one of the most famous examples of mathematical fractals, created by repeating a simple complex equation continuously.</p>
+                
+                <div class="my-formula-box">
+                    Z<sub>n+1</sub> = Z<sub>n</sub><sup>2</sup> + C
+                </div>
+
+                <p><strong>How it works:</strong></p>
+                <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+                    <li><strong>C</strong> represents each point (pixel position) on the complex coordinate grid.</li>
+                    <li><strong>Z</strong> starts at zero (<span class="my-shortcut-key">0 + 0i</span>) for every pixel.</li>
+                    <li>We calculate iterations repeatedly: square <span class="my-shortcut-key">Z</span> and add <span class="my-shortcut-key">C</span>.</li>
+                    <li>If the magnitude <span class="my-shortcut-key">|Z| &gt; 2</span>, the point escapes to infinity and is <em>outside</em> the set.</li>
+                    <li>Points that remain bounded forever belong <em>inside</em> the black set boundary.</li>
+                </ul>
+
+                <p><strong>Smooth Continuous Coloring:</strong></p>
+                <p>To avoid ugly banding artifacts when zooming, continuous fractional iterations are computed using smooth logarithmic coloring:</p>
+                <div class="my-formula-box" style="font-size: 13px;">
+                    Color = i + 1 - log(log(|Z|)) / log(2)
+                </div>
+
+                <p><strong>Navigation Controls:</strong></p>
+                <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 4px;">
+                    <li><span class="my-shortcut-key">Mouse Move</span>: Positions the zoom frame preview box.</li>
+                    <li><span class="my-shortcut-key">Mouse Wheel</span>: Expands/shrinks the zoom frame scale factor.</li>
+                    <li><span class="my-shortcut-key">Left Click</span>: Zooms straight into the center of the selection box.</li>
+                    <li><span class="my-shortcut-key">Right Click</span>: Zooms back out by 2x.</li>
+                    <li><span class="my-shortcut-key">Reset Button</span>: Returns to full view of the main fractal set.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables prefixed with 'my'
+        let myCanvas = null;
+        let myGlContext = null;
+        let myShaderProgram = null;
+        let myPreviewBoxEl = null;
+
+        // View State (High Precision handling with split float uniforms for deep zoom support)
+        let myCenterX = -0.5;
+        let myCenterY = 0.0;
+        let myZoomLevel = 1.0; // Base range spans ~3.0 units vertically
+        let myMaxIterations = 300;
+        let myPaletteIndex = 0;
+
+        // Interactive Box Tracking State
+        let myMouseX = 0;
+        let myMouseY = 0;
+        let myBoxScale = 0.5; // Dynamic selection box size factor relative to viewport
+        let myIsMouseInside = false;
+
+        // Uniform Locations
+        let myUniformLocations = {};
+
+        // Vertex Shader Source
+        const myVertexShaderSource = `
+            attribute vec2 aPosition;
+            varying vec2 vUv;
+            void main() {
+                vUv = (aPosition + 1.0) * 0.5;
+                gl_Position = vec4(aPosition, 0.0, 1.0);
+            }
+        `;
+
+        // Fragment Shader Source (Renders Mandelbrot with smooth continuous coloring)
+        const myFragmentShaderSource = `
+            precision highp float;
+
+            varying vec2 vUv;
+
+            uniform vec2 uResolution;
+            uniform vec2 uCenterHigh;
+            uniform vec2 uCenterLow;
+            uniform float uZoom;
+            uniform int uMaxIterations;
+            uniform int uPalette;
+
+            // Palette 0: Electric Neon
+            vec3 myPaletteNeon(float t) {
+                vec3 a = vec3(0.5, 0.5, 0.5);
+                vec3 b = vec3(0.5, 0.5, 0.5);
+                vec3 c = vec3(1.0, 1.0, 1.0);
+                vec3 d = vec3(0.00, 0.33, 0.67);
+                return a + b * cos(6.28318 * (c * t + d));
+            }
+
+            // Palette 1: Fire & Gold
+            vec3 myPaletteFire(float t) {
+                vec3 a = vec3(0.5, 0.5, 0.5);
+                vec3 b = vec3(0.5, 0.5, 0.5);
+                vec3 c = vec3(2.0, 1.0, 0.0);
+                vec3 d = vec3(0.50, 0.20, 0.25);
+                return a + b * cos(6.28318 * (c * t + d));
+            }
+
+            // Palette 2: Cosmic Psychedelic
+            vec3 myPaletteCosmic(float t) {
+                vec3 a = vec3(0.8, 0.5, 0.4);
+                vec3 b = vec3(0.2, 0.4, 0.2);
+                vec3 c = vec3(2.0, 1.0, 1.0);
+                vec3 d = vec3(0.00, 0.25, 0.25);
+                return a + b * cos(6.28318 * (c * t + d));
+            }
+
+            // Palette 3: Deep Ocean
+            vec3 myPaletteOcean(float t) {
+                vec3 a = vec3(0.5, 0.5, 0.5);
+                vec3 b = vec3(0.5, 0.5, 0.5);
+                vec3 c = vec3(1.0, 1.0, 0.5);
+                vec3 d = vec3(0.80, 0.90, 0.30);
+                return a + b * cos(6.28318 * (c * t + d));
+            }
+
+            // Palette 4: Ultra Smooth Rainbow
+            vec3 myPaletteRainbow(float t) {
+                vec3 a = vec3(0.5, 0.5, 0.5);
+                vec3 b = vec3(0.5, 0.5, 0.5);
+                vec3 c = vec3(1.0, 1.0, 1.0);
+                vec3 d = vec3(0.00, 0.10, 0.20);
+                return a + b * cos(6.28318 * (c * t + d));
+            }
+
+            vec3 myGetColor(float iter, float maxIter) {
+                if (iter >= maxIter) {
+                    return vec3(0.0, 0.0, 0.0); // Inside set
+                }
+
+                // Cycle color smoothly
+                float t = iter * 0.035;
+                if (uPalette == 0) return myPaletteNeon(t);
+                if (uPalette == 1) return myPaletteFire(t);
+                if (uPalette == 2) return myPaletteCosmic(t);
+                if (uPalette == 3) return myPaletteOcean(t);
+                return myPaletteRainbow(t);
+            }
+
+            void main() {
+                // Screen aspect ratio correction
+                vec2 st = (gl_FragCoord.xy - 0.5 * uResolution) / uResolution.y;
+
+                // Emulate higher precision coordinates
+                vec2 center = uCenterHigh + uCenterLow;
+                vec2 c = center + st * (3.0 / uZoom);
+
+                // Initialize Mandelbrot iteration state Z0 = 0
+                float zx = 0.0;
+                float zy = 0.0;
+                float zx2 = 0.0;
+                float zy2 = 0.0;
+
+                float iter = 0.0;
+                float maxI = float(uMaxIterations);
+
+                // Escape algorithm loop
+                for (int i = 0; i < 2500; i++) {
+                    if (float(i) >= maxI) break;
+                    if (zx2 + zy2 > 4.0) {
+                        iter = float(i);
+                        break;
+                    }
+
+                    zy = 2.0 * zx * zy + c.y;
+                    zx = zx2 - zy2 + c.x;
+                    zx2 = zx * zx;
+                    zy2 = zy * zy;
+                }
+
+                // Smooth Continuous Iteration Counting formula
+                if (zx2 + zy2 > 4.0) {
+                    float log_zn = log(zx2 + zy2) / 2.0;
+                    float nu = log(log_zn / log(2.0)) / log(2.0);
+                    iter = iter + 1.0 - nu;
+                } else {
+                    iter = maxI;
+                }
+
+                vec3 color = myGetColor(iter, maxI);
+                gl_FragColor = vec4(color, 1.0);
+            }
+        `;
+
+        // Helper shader creation function
+        async function myCreateShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error("Shader compile error:", gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        // Initialize WebGL pipeline
+        async function myInitWebGL() {
+            myCanvas = document.getElementById('myCanvas');
+            myGlContext = myCanvas.getContext('webgl', { antialias: false, preserveDrawingBuffer: true });
+
+            if (!myGlContext) {
+                alert('WebGL is not supported by your browser.');
+                return;
+            }
+
+            const vertShader = await myCreateShader(myGlContext, myGlContext.VERTEX_SHADER, myVertexShaderSource);
+            const fragShader = await myCreateShader(myGlContext, myGlContext.FRAGMENT_SHADER, myFragmentShaderSource);
+
+            myShaderProgram = myGlContext.createProgram();
+            myGlContext.attachShader(myShaderProgram, vertShader);
+            myGlContext.attachShader(myShaderProgram, fragShader);
+            myGlContext.linkProgram(myShaderProgram);
+
+            if (!myGlContext.getProgramParameter(myShaderProgram, myGlContext.LINK_STATUS)) {
+                console.error("Program link error:", myGlContext.getProgramInfoLog(myShaderProgram));
+                return;
+            }
+
+            myGlContext.useProgram(myShaderProgram);
+
+            // Create Screen Quad Geometry
+            const positionBuffer = myGlContext.createBuffer();
+            myGlContext.bindBuffer(myGlContext.ARRAY_BUFFER, positionBuffer);
+            myGlContext.bufferData(
+                myGlContext.ARRAY_BUFFER,
+                new Float32Array([
+                    -1.0, -1.0,
+                     1.0, -1.0,
+                    -1.0,  1.0,
+                    -1.0,  1.0,
+                     1.0, -1.0,
+                     1.0,  1.0
+                ]),
+                myGlContext.STATIC_DRAW
+            );
+
+            const posLocation = myGlContext.getAttribLocation(myShaderProgram, "aPosition");
+            myGlContext.enableVertexAttribArray(posLocation);
+            myGlContext.vertexAttribPointer(posLocation, 2, myGlContext.FLOAT, false, 0, 0);
+
+            // Fetch uniform locations
+            myUniformLocations = {
+                uResolution: myGlContext.getUniformLocation(myShaderProgram, "uResolution"),
+                uCenterHigh: myGlContext.getUniformLocation(myShaderProgram, "uCenterHigh"),
+                uCenterLow: myGlContext.getUniformLocation(myShaderProgram, "uCenterLow"),
+                uZoom: myGlContext.getUniformLocation(myShaderProgram, "uZoom"),
+                uMaxIterations: myGlContext.getUniformLocation(myShaderProgram, "uMaxIterations"),
+                uPalette: myGlContext.getUniformLocation(myShaderProgram, "uPalette")
+            };
+        }
+
+        // Main WebGL Render Loop
+        async function myRenderFractal() {
+            if (!myGlContext || !myShaderProgram) return;
+
+            // Resize canvas resolution
+            if (myCanvas.width !== window.innerWidth || myCanvas.height !== window.innerHeight) {
+                myCanvas.width = window.innerWidth;
+                myCanvas.height = window.innerHeight;
+                myGlContext.viewport(0, 0, myCanvas.width, myCanvas.height);
+            }
+
+            // Split center coordinates into high and low precision float pairs
+            const centerHighX = Math.fround(myCenterX);
+            const centerLowX = myCenterX - centerHighX;
+
+            const centerHighY = Math.fround(myCenterY);
+            const centerLowY = myCenterY - centerHighY;
+
+            myGlContext.uniform2f(myUniformLocations.uResolution, myCanvas.width, myCanvas.height);
+            myGlContext.uniform2f(myUniformLocations.uCenterHigh, centerHighX, centerHighY);
+            myGlContext.uniform2f(myUniformLocations.uCenterLow, centerLowX, centerLowY);
+            myGlContext.uniform1f(myUniformLocations.uZoom, myZoomLevel);
+            myGlContext.uniform1i(myUniformLocations.uMaxIterations, myMaxIterations);
+            myGlContext.uniform1i(myUniformLocations.uPalette, myPaletteIndex);
+
+            myGlContext.drawArrays(myGlContext.TRIANGLES, 0, 6);
+
+            // Update UI Zoom Display
+            document.getElementById('myZoomDisplay').innerText = myZoomLevel < 1e4 ? myZoomLevel.toFixed(2) + 'x' : myZoomLevel.toExponential(2) + 'x';
+        }
+
+        // Update Position and size of dynamic SVG selection preview box
+        function myUpdatePreviewBox() {
+            if (!myPreviewBoxEl) return;
+
+            if (!myIsMouseInside) {
+                myPreviewBoxEl.setAttribute('x', '-1000');
+                myPreviewBoxEl.setAttribute('y', '-1000');
+                return;
+            }
+
+            const boxWidth = window.innerWidth * myBoxScale;
+            const boxHeight = window.innerHeight * myBoxScale;
+
+            const boxX = myMouseX - boxWidth / 2;
+            const boxY = myMouseY - boxHeight / 2;
+
+            myPreviewBoxEl.setAttribute('x', boxX.toString());
+            myPreviewBoxEl.setAttribute('y', boxY.toString());
+            myPreviewBoxEl.setAttribute('width', boxWidth.toString());
+            myPreviewBoxEl.setAttribute('height', boxHeight.toString());
+
+            document.getElementById('myBoxScaleDisplay').innerText = (1 / myBoxScale).toFixed(2) + 'x';
+        }
+
+        // Convert screen pixel position to complex coordinates C(x, y)
+        function myScreenToComplex(px, py) {
+            const aspect = myCanvas.width / myCanvas.height;
+            const normX = (px - myCanvas.width * 0.5) / myCanvas.height;
+            const normY = (myCanvas.height * 0.5 - py) / myCanvas.height; // WebGL Y is inverted relative to Screen Y
+
+            const complexX = myCenterX + normX * (3.0 / myZoomLevel);
+            const complexY = myCenterY + normY * (3.0 / myZoomLevel);
+
+            return { x: complexX, y: complexY };
+        }
+
+        // Handle Mouse Move Event
+        function myHandleMouseMove(e) {
+            myMouseX = e.clientX;
+            myMouseY = e.clientY;
+            myIsMouseInside = true;
+            myUpdatePreviewBox();
+        }
+
+        // Handle Mouse Wheel Event (Resizes preview box scaling factor)
+        function myHandleWheel(e) {
+            e.preventDefault();
+            const delta = e.deltaY;
+
+            if (delta > 0) {
+                // Shrink preview scale factor (larger zoom frame)
+                myBoxScale = Math.min(0.9, myBoxScale * 1.1);
+            } else {
+                // Expand preview scale factor (tighter zoom frame)
+                myBoxScale = Math.max(0.05, myBoxScale * 0.9);
+            }
+
+            myUpdatePreviewBox();
+        }
+
+        // Handle Canvas Click Event (Zooms centered on mouse cursor)
+        function myHandleClick(e) {
+            // Calculate complex center at mouse position
+            const newCenter = myScreenToComplex(e.clientX, e.clientY);
+            
+            myCenterX = newCenter.x;
+            myCenterY = newCenter.y;
+
+            // Scale zoom inversely proportional to selection frame box size
+            myZoomLevel /= myBoxScale;
+
+            myRenderFractal();
+        }
+
+        // Handle Canvas Right Click Event (Zooms out by 2x)
+        function myHandleContextMenu(e) {
+            e.preventDefault();
+            myZoomLevel = Math.max(0.5, myZoomLevel * 0.5);
+            myRenderFractal();
+        }
+
+        // Reset Fractal View to default origin
+        function myResetView() {
+            myCenterX = -0.5;
+            myCenterY = 0.0;
+            myZoomLevel = 1.0;
+            myBoxScale = 0.5;
+            myRenderFractal();
+            myUpdatePreviewBox();
+        }
+
+        // Toggle Information Modal Dialog
+        function myToggleModal(show) {
+            const modal = document.getElementById('myModalOverlay');
+            if (show) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Handle Window Resize
+        function myHandleResize() {
+            myRenderFractal();
+            myUpdatePreviewBox();
+        }
+
+        // App Initialization Routine
+        async function myInitApp() {
+            await myInitWebGL();
+
+            myPreviewBoxEl = document.getElementById('myPreviewBox');
+
+            // Set up direct property event assignments
+            window.onresize = myHandleResize;
+            window.onwheel = myHandleWheel;
+
+            myCanvas.onmousemove = myHandleMouseMove;
+            myCanvas.onclick = myHandleClick;
+            myCanvas.oncontextmenu = myHandleContextMenu;
+            myCanvas.onmouseleave = () => {
+                myIsMouseInside = false;
+                myUpdatePreviewBox();
+            };
+
+            // UI Control Event Assignments
+            document.getElementById('myResetBtn').onclick = myResetView;
+            document.getElementById('myHelpBtn').onclick = () => myToggleModal(true);
+            document.getElementById('myHintBtn').onclick = () => myToggleModal(true);
+            document.getElementById('myModalCloseBtn').onclick = () => myToggleModal(false);
+
+            document.getElementById('myModalOverlay').onclick = (e) => {
+                if (e.target.id === 'myModalOverlay') {
+                    myToggleModal(false);
+                }
+            };
+
+            const iterInput = document.getElementById('myMaxIterInput');
+            iterInput.oninput = (e) => {
+                myMaxIterations = parseInt(e.target.value);
+                document.getElementById('myIterDisplay').innerText = myMaxIterations.toString();
+                myRenderFractal();
+            };
+
+            const paletteSelect = document.getElementById('myPaletteSelect');
+            paletteSelect.onchange = (e) => {
+                myPaletteIndex = parseInt(e.target.value);
+                myRenderFractal();
+            };
+
+            // Keyboard shortcut support
+            window.onkeydown = (e) => {
+                if (e.key === 'r' || e.key === 'R') {
+                    myResetView();
+                } else if (e.key === 'Escape') {
+                    myToggleModal(false);
+                }
+            };
+
+            // Initial Render Call
+            myRenderFractal();
+        }
+
+        // Launch application on window load
+        window.onload = function() {
+            myInitApp();
+        };
+    </script>
+</body>
+</html>
