@@ -13,13 +13,13 @@ function trainHero(){
   if(myHero.power >= 75){
     myHero.comment = 'High Power!'
   }
-  if(myHero.power < 75 && myHero.power >= 50){
+  else if(myHero.power < 75 && myHero.power >= 50){
     myHero.comment = 'Medium Power'
   }
-  if(myHero.power < 50 && myHero.power >= 25){
+  else if(myHero.power < 50 && myHero.power >= 25){
     myHero.comment = 'Low power'
   }
-  if(myHero.power < 25 && myHero.power >= 1){
+  else if(myHero.power < 25 && myHero.power >= 1){
     myHero.comment = 'Critically Low Power..!'
   }
   else{
