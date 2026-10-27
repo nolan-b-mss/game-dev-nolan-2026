@@ -1,0 +1,43 @@
+<head>
+<title>t1a16-powerup-nolan.html</title>
+<script> 
+<!-- All functions go here -->
+let myHero = {
+   name: 'Captain Code',
+   power: 100,
+   comment: 'Ready for training!'
+};
+
+function trainHero(){
+   myHero.power -= 10
+  if(myHero.power >= 75){
+    myHero.comment = 'High Power!'
+  }
+  if(myHero.power < 75 && myHero.power >= 50){
+    myHero.comment = 'Medium Power'
+  }
+  if(myHero.power < 50 && myHero.power >= 25){
+    myHero.comment = 'Low power'
+  }
+  if(myHero.power < 25 && myHero.power >= 1){
+    myHero.comment = 'Critically Low Power..!'
+  }
+  else{
+    myHero.comment = 'No power';
+    alert('Out of power.');
+    myHero.power = 100; 
+  }
+  document.getElementById('myDiv01').innerHTML = `Hero power = ${myHero.power}, Comment: ${myHero.comment}`
+}
+
+</script>
+</head>
+
+<h2 align=center>Stateful Hero Energy Tracker</h2>
+Student Name: Nolan, Date: 10/27/2026, Assignment Title: Stateful Object Assignment <br><br> 
+
+
+<input type=button value="Train Hero (-10 Power)" onclick="{trainHero()}">
+<br><br>
+
+<div id="myDiv01">Click the button above to begin training! Initial Power: 100</div>
