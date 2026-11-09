@@ -14,13 +14,14 @@
             if (Array.isArray(data)) {
                 imageUrl = data[0].url || data[0];
             } else {
-                imageUrl = data.message || data.image || data.file || data.url;
+                // Handled property keys for all chosen APIs
+                imageUrl = data.message || data.image || data.file || data.url || data.link || data.img;
             }
 
             document.getElementById('myDiv1').innerHTML = `<img src="${imageUrl}" alt="Random Animal" style="max-width: 100%; height: auto; border-radius: 8px;">`;
         } catch (error) {
             console.error("Error fetching data:", error);
-            document.getElementById('myDiv1').innerHTML = `Failed to load image. Try another option</p>`;
+            document.getElementById('myDiv1').innerHTML = `Failed to load image. Try another option`;
         }
     }
 </script>
@@ -31,14 +32,13 @@
     <option value="https://dog.ceo/api/breeds/image/random">Random Dog</option>
     <option value="https://api.thecatapi.com/v1/images/search">Random Cat</option>
     <option value="https://random.dog/woof.json">Random Dog 2</option>
-    <option value="https://random-d.uk/api/v2/random">Random Duck</option>
-    <option value="https://shibe.online/api/shibes">Random Shiba Inu (faulty on school wifi)</option>
-    <option value="https://shibe.online/api/cats">Random Shibe Cat(faulty on school wifi)</option>
-    <option value="https://shibe.online/api/birds">Random Shibe Bird(faulty on school wifi)</option>
+    <option value="https://random-d.uk/">Random Duck</option>
     <option value="https://api.bunnies.io/v2/loop/random/?media=gif,png">Random Bunny</option>
+    <option value="https://some-random-api.com/animal/kangaroo">Random Kangaroo</option>
+    <option value="https://some-random-api.com/animal/whake">Random Whale</option>
 </select>
 
-<div id="myDiv1"></div>
+<div id="myDiv1" style="margin-top: 15px;"></div>
 
 <hr>
 JSON (JavaScript Object Notation) is a lightweight data transfer format that is easy for humans to read and write, and easy for machines to parse and generate.<br>
@@ -46,7 +46,7 @@ It is often used for transmitting data in web applications between a server and 
 Example working code 
 <pre>
 {
-    "userID" : "1"
+    "userID" : "1",
     "name" : "Fred Smith",
     "age" : "16",
     "school" : "St. Jimothy Secondary",
@@ -54,12 +54,12 @@ Example working code
         "address" : "123 John Road",
         "city" : "Vancouver",
         "postalCode" : "V1A 2B3"
-    }
+    },
     "contacts" : {
-        "mobile" : "1-800-FRED"
+        "mobile" : "1-800-FRED",
         "emergency" : {
-            "name" : "Alice Smith"
-            "relationship" : "Sister"
+            "name" : "Alice Smith",
+            "relationship" : "Sister",
             "phone" : "1-800-PHON"
         }
     }
