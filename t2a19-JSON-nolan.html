@@ -1,0 +1,45 @@
+<h1 align=center>t2a19-JSON-nolan.html</h1>
+
+<script>
+    async function fetchData(url){
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+
+        const myJson = JSON.stringify(data, null 2);
+        document.getElementById('myDiv1').innerHTML = `<pre>${myJson}</pre>`;
+
+        document.getElementById('myDiv1').innerHTML = `<img src="${data.image}" alt="Random Image" style="max-width: 100%; height: auto;">`;
+    }
+</script>
+
+<select id="mySelect" size="1" onchange="fetchData(this.value)">
+    <option value = "https://randomfox.ca/floof/">randomfox</option>
+    <option value = "https://dog.ceo/api/breeds/image/random">randomdog</option>
+</select>
+
+<hr>
+JSON (JavaScript Object Notation) is a lightweight data transfer format that is easy for humans to read and write, and easy for machines to parse and generate.<br>
+It is often used for transmitting data in web applications between a server and a client.<br>
+Example working code 
+<pre>
+{
+    "userID" : "1"
+    "name" : "Fred Smith",
+    "age" : "16",
+    "school" : "St. Jimothy Secondary",
+    "location" : {
+        "address" : "123 John Road",
+        "city" : "Vancouver",
+        "postalCode" : "V1A 2B3"
+    }
+    "contacts" : {
+        "mobile" : "1-800-FRED"
+        "emergency" : {
+            "name" : "Alice Smith"
+            "relationship" : "Sister"
+            "phone" : "1-800-PHON"
+        }
+    }
+}
+</pre>
