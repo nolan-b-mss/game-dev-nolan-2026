@@ -14,8 +14,8 @@
             if (Array.isArray(data)) {
                 imageUrl = data[0].url || data[0];
             } else {
-                // Handled property keys for all chosen APIs
-                imageUrl = data.message || data.image || data.file || data.url || data.link || data.img;
+                // property keys for all APIs
+                imageUrl = data.message || data.image || data.file || data.url || data.link || data.img || data.media.poster
             }
 
             document.getElementById('myDiv1').innerHTML = `<img src="${imageUrl}" alt="Random Animal" style="max-width: 100%; height: auto; border-radius: 8px;">`;
@@ -32,10 +32,10 @@
     <option value="https://dog.ceo/api/breeds/image/random">Random Dog</option>
     <option value="https://api.thecatapi.com/v1/images/search">Random Cat</option>
     <option value="https://random.dog/woof.json">Random Dog 2</option>
-    <option value="https://random-d.uk/">Random Duck</option>
+    <option value="https://random-d.uk/">Random Duck(faulty on school wifi)</option>
     <option value="https://api.bunnies.io/v2/loop/random/?media=gif,png">Random Bunny</option>
-    <option value="https://some-random-api.com/animal/kangaroo">Random Kangaroo</option>
-    <option value="https://some-random-api.com/animal/whake">Random Whale</option>
+    <option value="https://some-random-api.com/animal/kangaroo">Random Kangaroo(faulty on school wifi)</option>
+    <option value="https://some-random-api.com/animal/whale">Random Whale(faulty on school wifi)</option>
 </select>
 
 <div id="myDiv1" style="margin-top: 15px;"></div>
