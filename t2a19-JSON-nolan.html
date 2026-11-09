@@ -2,23 +2,31 @@
 
 <script>
     async function fetchData(url){
+        if (!url) return;
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
 
-        const myJson = JSON.stringify(data, null, 2);
-        document.getElementById('myDiv1').innerHTML = `<pre>${myJson}</pre>`;
+        const imageUrl = data.message || data.image || data.file || data.url;
 
-        document.getElementById('myDiv1').innerHTML = `<img src="${data.image}" alt="Random Image" style="max-width: 100%; height: auto;">`;
+        document.getElementById('myDiv1').innerHTML = `<img src="${imageUrl}" alt="Random Animal" style="max-width: 100%; height: auto; border-radius: 8px;">`;
     }
 </script>
 
 <select id="mySelect" size="1" onchange="fetchData(this.value)">
-    <option value = "https://randomfox.ca/floof/">randomfox</option>
-    <option value = "https://dog.ceo/api/breeds/image/random">randomdog</option>
+    <option value="">Select an animal</option>
+    <option value="https://randomfox.ca/floof/">Random Fox</option>
+    <option value="https://dog.ceo/api/breeds/image/random">Random Dog</option>
+    <option value="https://api.thecatapi.com/v1/images/search">Random Cat</option>
+    <option value="https://random.dog/woof.json">Random Dog (Alt)</option>
+    <option value="https://random-d.uk/api/v2/random">Random Duck</option>
+    <option value="https://shibe.online/api/shibes">Random Shiba Inu</option>
+    <option value="https://shibe.online/api/cats">Random Shibe Cat</option>
+    <option value="https://shibe.online/api/birds">Random Shibe Bird</option>
+    <option value="https://some-random-api.com/animal/panda">Random Panda</option>
 </select>
 
-<div id="myDiv1"></div>
+<div id="myDiv1""></div>
 
 <hr>
 JSON (JavaScript Object Notation) is a lightweight data transfer format that is easy for humans to read and write, and easy for machines to parse and generate.<br>
