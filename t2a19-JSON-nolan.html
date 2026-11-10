@@ -15,7 +15,7 @@
                 imageUrl = data[0].url || data[0];
             } else {
                 // property keys for all APIs
-                imageUrl = data.message || data.image || data.file || data.url || data.link || data.img || data.media.poster
+                imageUrl = data.message || data.image || data.file || data.url || data.link || data.img || data.media.poster;
             }
 
             document.getElementById('myDiv1').innerHTML = `<img src="${imageUrl}" alt="Random Animal" style="max-width: 100%; height: auto; border-radius: 8px;">`;
