@@ -15,7 +15,7 @@
                 imageUrl = data[0].url || data[0] || data[0].message || data[0].image || data[0].file || data[0].url || data[0].link || data[0].img || data[0].media.poster;
             } else {
                 // property keys for all APIs
-                imageUrl = data.message || data.image || data.file || data.url || data.link || data.img || data.media.poster;
+                imageUrl = data.message || data.image || data.file || data.url || data.link || data.img || data.media.gif || data.media.poster;
             }
 
             document.getElementById('myDiv1').innerHTML = `<img src="${imageUrl}" alt="Random Animal" style="max-width: 100%; height: auto;">`;
