@@ -31,5 +31,30 @@
         }
     }
 }">
+<br>
+
+<input type="button" value="Set random, show random in myDiv02, sort, and show sorted in myDiv01" onclick="{
+        for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myCards[myLoop] = Math.floor(Math.random()*10)
+    }
+        let myTemp = ''
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myTemp += myLoop + ' = ' + myCards[myLoop] + '<br>' 
+    }
+    document.getElementById('myDiv02').innerHTML = myTemp // shows unsorted
+        let myTemp1 = 0
+    for (let i = 0; i < myMax; i++) {
+        for (let j = 0; j < myMax - 1; j++) {
+            if (myCards[j] > myCards[j + 1]) {
+                myTemp1 = myCards[j]
+                myCards[j] = myCards[j + 1]
+                myCards[j + 1] = myTemp1
+            }
+        }
+    }
+    document.getElementById('myDiv01').innerHTML = myTemp1 // shows sorted
+}">
+<br>
 
 <div id="myDiv01">...</div>
+<div id="myDiv02">...</div>
