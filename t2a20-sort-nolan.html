@@ -9,14 +9,11 @@
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myCards[myLoop] = Math.floor(Math.random()*10)
     }
-}">
-
-<input type="button" value="Show" onclick="{
     let myTemp = ''
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myTemp += myLoop + ' = ' + myCards[myLoop] + '<br>' 
     }
-    document.getElementById('myDiv01').innerHTML = myTemp
+    document.getElementById('myDiv02').innerHTML = myTemp
 }">
 
 <input type="button" value="Sort (Bubble)" onclick="{
@@ -62,7 +59,7 @@
 
 <div id="myDiv01">Sorted array will be here</div>
 <br>
-<div id="myDiv02">Unsorted array will be here (if you press the singular button that does everything)</div>
+<div id="myDiv02">Unsorted array will be here</div>
 <hr>
 New sorts below this:
 <br>
