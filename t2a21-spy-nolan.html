@@ -78,10 +78,9 @@ if (myString[myLoop] == 'a') {myTemp  = 'z'}
    }
    document.getElementById('myArea03').value = myString.join('')
 }"><br><br>
-<hr> 
-New stuff below: <br>
 <textarea id="myArea03" rows=4 cols=70></textarea><br> 
 <hr>
+New stuff below: <br>
 <h2 align=left> Vowels & Reverse Cipher </h2>
 <textarea id="myArea04" rows=4 cols=70>The quick brown fox jumps over the lazy dog.</textarea><br>
 <input type=button value="encrypt" onclick="{
@@ -279,7 +278,7 @@ New stuff below: <br>
 <textarea id="myArea11" rows=4 cols=70></textarea><br>
 <input type=button value="decrypt" onclick="{
    let myTemp = ''
-   let myString = document.getElementById('myArea05').value.toLowerCase().split('')
+   let myString = document.getElementById('myArea11').value.toLowerCase().split('')
    for (let myLoop=0;   myLoop < myString.length; myLoop++){
       myTemp = myString[myLoop]
       if (myString[myLoop] == 'q') {myTemp  = 'a'}
