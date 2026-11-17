@@ -19,7 +19,7 @@
     document.getElementById('myDiv01').innerHTML = myTemp
 }">
 
-<input type="button" value="Sort" onclick="{
+<input type="button" value="Sort (Bubble)" onclick="{
     let myTemp = 0
     for (let i = 0; i < myMax; i++) {
         for (let j = 0; j < myMax - 1; j++) {
@@ -34,15 +34,15 @@
 <br>
 
 <input type="button" value="Set random, show random in myDiv02, sort, and show sorted in myDiv01" onclick="{
-        for (let myLoop = 0; myLoop < myMax; myLoop++){
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
         myCards[myLoop] = Math.floor(Math.random()*10)
     }
-        let myTemp = ''
+    let myTemp = ''
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myTemp += myLoop + ' = ' + myCards[myLoop] + '<br>' 
     }
     document.getElementById('myDiv02').innerHTML = myTemp // shows unsorted
-        let myTemp1 = 0
+    let myTemp1 = 0
     for (let i = 0; i < myMax; i++) {
         for (let j = 0; j < myMax - 1; j++) {
             if (myCards[j] > myCards[j + 1]) {
@@ -63,3 +63,45 @@
 <div id="myDiv01">Sorted array will be here</div>
 <br>
 <div id="myDiv02">Unsorted array will be here (if you press the singular button that does everything)</div>
+<hr>
+New sorts below this:
+<br>
+
+<input type="button" value="Selection Sort" onclick="{
+    let myTemp = 0
+    for (let i = 0; i < myMax - 1; i++) {
+        let minIdx = i
+        for (let j = i + 1; j < myMax; j++) {
+            if (myCards[j] < myCards[minIdx]) {
+                minIdx = j
+            }
+        }
+        if (minIdx !== i) {
+            myTemp = myCards[i]
+            myCards[i] = myCards[minIdx]
+            myCards[minIdx] = myTemp
+        }
+    }
+    let myOut = ''
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myOut += myLoop + ' = ' + myCards[myLoop] + '<br>' 
+    }
+    document.getElementById('myDiv01').innerHTML = myOut
+}">
+
+<input type="button" value="Insertion Sort" onclick="{
+    for (let i = 1; i < myMax; i++) {
+        let key = myCards[i]
+        let j = i - 1
+        while (j >= 0 && myCards[j] > key) {
+            myCards[j + 1] = myCards[j]
+            j = j - 1
+        }
+        myCards[j + 1] = key
+    }
+    let myOut = ''
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myOut += myLoop + ' = ' + myCards[myLoop] + '<br>' 
+    }
+    document.getElementById('myDiv01').innerHTML = myOut
+}">
