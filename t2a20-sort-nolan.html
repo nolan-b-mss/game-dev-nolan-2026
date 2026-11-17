@@ -27,10 +27,15 @@
             }
         }
     }
+    let myOut01 = ''
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myOut01 += myLoop + ' = ' + myCards[myLoop] + '<br>' 
+    }
+    document.getElementById('myDiv01').innerHTML = myOut01 // shows sorted
 }">
 <br>
 
-<input type="button" value="Set random, show random in myDiv02, sort, and show sorted in myDiv01" onclick="{
+<input type="button" value="Both above buttons, in one button" onclick="{
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myCards[myLoop] = Math.floor(Math.random()*10)
     }
@@ -57,9 +62,9 @@
 }">
 <br>
 
-<div id="myDiv01">Sorted array will be here</div>
+<div id="myDiv01">Sorted arrays will be here</div>
 <br>
-<div id="myDiv02">Unsorted array will be here</div>
+<div id="myDiv02">Unsorted arrays will be here</div>
 <hr>
 New sorts below this:
 <br>
