@@ -1,9 +1,9 @@
 <h1 align=center>x-x-slot-machine-nolan.html</h1>
 
 <script>
+  let myAutoNum = 1;
   let totalDoubles = 0;
   let totalJackpot = 0;
-  let totalProfit = 0;
   let totalFails = 0;
   let myCash = 500;
   function myRoll(){
@@ -30,9 +30,23 @@
     Total Profit: $${myCash - 500}<br>
     `
   }
+function myAutoRoll() {
+  const inputEl = document.getElementById('myAutoInput');
+  const rolls = Math.max(0, parseInt(inputEl.value, 10) || 0);
+
+  for (let i = 0; i < rolls; i++) {
+    const cashBefore = myCash;
+    myRoll();
+    if (myCash === cashBefore && myCash < 10) {
+      break;
+    }
+  }
+}
 </script>
 <div id="myCashDisplay">$500</div>
 <input type=button value="Roll (- $10)" onclick="myRoll()"><br>
+<input type=button value="Roll custom amount of times" onclick="myAutoRoll()">
+<input type=number value="1" id="myAutoInput" onchange="{myAutoNum = document.getElementById('myAutoInput').value;}">
 <div id="myOut01">Please roll</div><br>
 <div id="myOut02">Results will be here</div><br><br>
 <div id="myInfo">...</div>
