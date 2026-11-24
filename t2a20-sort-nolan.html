@@ -1,10 +1,13 @@
 <h1 align="center">t2a20-sort-nolan.html</h1>
 
 <script>
-    let myMax = 52
+    let myMax = 3
     let myCards = new Array(myMax)
 </script>
-
+<input type="number" id="myMaxInput" value=3 onchange="{
+    myMax = document.getElementById('myMaxInput').value
+}"> Max amount of entries
+<br>
 <input type="button" value="Set Random" onclick="{
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myCards[myLoop] = Math.floor(Math.random()*10)
@@ -15,7 +18,6 @@
     }
     document.getElementById('myDiv02').innerHTML = myTemp
 }">
-
 <input type="button" value="Sort (Bubble)" onclick="{
     let myTemp = 0
     for (let i = 0; i < myMax; i++) {
