@@ -10,17 +10,17 @@
     let myNum03 = Math.floor(Math.random() * 10);
     document.getElementById('myOut01').innerHTML = `|${myNum01}|${myNum02}|${myNum03}|`;
     if (myNum01 == myNum02 && myNum01 == myNum03)
-    {document.getElementById('myOut02').innerHTML = `Jackpot, + $50`; myCash += 50; }
+    {document.getElementById('myOut02').innerHTML = `Jackpot, + $50`; myCash += 500; }
     else if (myNum01 == myNum02 || 
              myNum01 == myNum03 ||
              myNum02 == myNum03)
-    {document.getElementById('myOut02').innerHTML = `Two of a kind, + $10`; myCash += 10; }
+    {document.getElementById('myOut02').innerHTML = `Two of a kind, + $10`; myCash += 30; }
     else
     {document.getElementById('myOut02').innerHTML = `Try again` }
     document.getElementById('myCashDisplay').innerHTML = `$${myCash}`
   }
 </script>
-<div id="myCashDisplay">$50</div>
+<div id="myCashDisplay">$500</div>
 <input type=button value="Roll (- $10)" onclick="myRoll()"><br>
 <div id="myOut01">Please roll</div><br>
 <div id="myOut02">Results will be here</div><br>

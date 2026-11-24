@@ -1,0 +1,67 @@
+<h2 align="center">t2a23-canvas-nolan.html</h2>
+Click the button to draw basic shapes, then ask AI to help you add more<br><br>
+
+<input type="button" value="Draw Basic Shapes" onclick="{
+    myContext.clearRect(0,0, myCanvas.width, myCanvas.height);
+
+    myContext.beginPath();
+    myContext.lineWidth = 3;
+    myContext.strokeStyle = 'black';
+    myContext.moveTo(20,20);
+    myContext.lineTo(150,20);
+    myContext.stroke();
+
+    myContext.fillStyle = 'blue';
+    myContext.fillRect(30, 50, 100, 60);
+
+    myContext.beginPath();
+    myContext.lineWidth = 5;
+    myContext.strokeStyle = 'green';
+    myContext.arc(220, 80, 40, 0, 2 * Math.PI);
+    myContext.stroke();
+
+    myContext.fillStyle = 'red';
+    myContext.font = '24px Arial';
+    myContext.fillText('Hello world!', 30, 100);
+}">
+
+<input type="button" value="Draw Star & Triangle (new)" onclick="{
+    myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+    myContext.beginPath();
+    myContext.moveTo(100, 50);
+    myContext.lineTo(40, 160);
+    myContext.lineTo(160, 160);
+    myContext.closePath();
+    myContext.fillStyle = 'orange';
+    myContext.fill();
+    myContext.lineWidth = 3;
+    myContext.strokeStyle = 'black';
+    myContext.stroke();
+
+    let cx = 300, cy = 110, spikes = 5, outerRadius = 60, innerRadius = 25;
+    let rot = Math.PI / 2 * 3;
+    let step = Math.PI / spikes;
+
+    myContext.beginPath();
+    myContext.moveTo(cx, cy - outerRadius);
+    for (let i = 0; i < spikes; i++) {
+        myContext.lineTo(cx + Math.cos(rot) * outerRadius, cy + Math.sin(rot) * outerRadius);
+        rot += step;
+        myContext.lineTo(cx + Math.cos(rot) * innerRadius, cy + Math.sin(rot) * innerRadius);
+        rot += step;
+    }
+    myContext.closePath();
+    myContext.fillStyle = 'gold';
+    myContext.fill();
+    myContext.lineWidth = 3;
+    myContext.strokeStyle = 'black';
+    myContext.stroke();
+}"><br><br>
+
+<canvas id="myCoolTag" width="500" height="300" style="border:1px solid #000000;"></canvas>
+
+<script>
+    let myCanvas = document.getElementById('myCoolTag');
+    let myContext = myCanvas.getContext('2d');
+</script>
