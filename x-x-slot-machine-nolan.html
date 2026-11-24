@@ -1,11 +1,10 @@
 <h1 align=center>x-x-slot-machine-nolan.html</h1>
 
 <script>
-  let myCash = 50;
+  let myCash = 500;
   function myRoll(){
     if ( myCash < 10) {document.getElementById('myOut01').innerHTML = `Insufficient Funds, please reload webpage`; return;}
     myCash -= 10;
-    document.getElementById('myCashDisplay').innerHTML = `$${myCash}`
     let myNum01 = Math.floor(Math.random() * 10);
     let myNum02 = Math.floor(Math.random() * 10);
     let myNum03 = Math.floor(Math.random() * 10);
@@ -18,6 +17,7 @@
     {document.getElementById('myOut02').innerHTML = `Two of a kind, + $10`; myCash += 10; }
     else
     {document.getElementById('myOut02').innerHTML = `Try again` }
+    document.getElementById('myCashDisplay').innerHTML = `$${myCash}`
   }
 </script>
 <div id="myCashDisplay">$50</div>

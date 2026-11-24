@@ -1,27 +1,104 @@
-
 <h2>t2a22-local-storage-nolan.html</h2>
 
 Use local storage to make a to-do list
 
 <body onload="{
-   myStorage = localStorage.getItem('myStoredText')
-   if(myStorage  != null){
-      document.getElementById('myText1').value = myStorage 
-    }
-}">
+   let myStorage = localStorage.getItem('myStoredText');
+   if(myStorage != null){
+      document.getElementById('myText1').value = myStorage;
+   }
+   
+   loadTodos();
+}"
+   onunload="{
+      localStorage.setItem('myStoredText', document.getElementById('myText1').value);
+}" 
+>
 
-<body onunload="{
-   localstorage.setItem('myStoredText',document.getElementById('myText1').value)
-}">   
-
-Text example: <input id="myText1" type=text size=70 value="" placeholder="Write here to store"><br>
+Text example: <input id="myText1" type="text" size="70" value="" placeholder="Write here to store"><br>
 
 <input type="button" value="Store Text" onClick="{
-   localStorage.setItem('myStoredText', document.getElementById('myText1').value)
-   alert(document.getElementById('myText1').value + ' \nHas been stored')
-   document.getElementById('myText1').value = ''
+   localStorage.setItem('myStoredText', document.getElementById('myText1').value);
+   alert(document.getElementById('myText1').value + ' \nHas been stored');
+   document.getElementById('myText1').value = '';
 }">
 
 <input type="button" value="Retrieve Text" onClick="{
-   document.getElementById('myText1').value = localStorage.getItem('myStoredText')
+   document.getElementById('myText1').value = localStorage.getItem('myStoredText');
 }"> 
+
+<hr>
+New stuff below this:
+
+<input id="myTodoInput" type="text" size="50" placeholder="Enter a new task">
+<input type="button" value="Add Task" onclick="addTodo()">
+<input type="button" value="Clear All" onclick="clearTodos()">
+
+<div id="myTodoList" style="margin-top: 15px; font-family: sans-serif;"></div>
+
+<script>
+   let myTasks = [];
+
+   function loadTodos() {
+      let saved = localStorage.getItem('myUserTodos');
+      if (saved != null) {
+         myTasks = JSON.parse(saved);
+      }
+      renderTodos();
+   }
+
+   function saveTodos() {
+      localStorage.setItem('myUserTodos', JSON.stringify(myTasks));
+   }
+
+   function addTodo() {
+      let input = document.getElementById('myTodoInput');
+      if (input.value.trim() === '') {
+         alert('Please type a task first');
+         return;
+      }
+      
+      myTasks.push({ text: input.value, done: false });
+      input.value = '';
+      
+      saveTodos();
+      renderTodos();
+   }
+
+   function toggleTodo(index) {
+      myTasks[index].done = !myTasks[index].done;
+      saveTodos();
+      renderTodos();
+   }
+
+   function deleteTodo(index) {
+      myTasks.splice(index, 1);
+      saveTodos();
+      renderTodos();
+   }
+
+   function clearTodos() {
+      myTasks = [];
+      saveTodos();
+      renderTodos();
+   }
+
+   function renderTodos() {
+      let listDiv = document.getElementById('myTodoList');
+      listDiv.innerHTML = '';
+
+      for (let i = 0; i < myTasks.length; i++) {
+         let textStyle = myTasks[i].done ? 'text-decoration: line-through; color: gray;' : '';
+         let checkStatus = myTasks[i].done ? 'checked' : '';
+
+         listDiv.innerHTML += `
+            <div style="margin-bottom: 8px;">
+               <input type="checkbox" ${checkStatus} onclick="toggleTodo(${i})">
+               <span style="${textStyle}">${myTasks[i].text}</span>
+               <input type="button" value="X" style="margin-left: 10px; color: red;" onclick="deleteTodo(${i})">
+            </div>
+         `;
+      }
+   }
+</script>
+</body>
