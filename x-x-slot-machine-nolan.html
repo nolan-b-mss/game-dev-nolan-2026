@@ -1,6 +1,10 @@
 <h1 align=center>x-x-slot-machine-nolan.html</h1>
 
 <script>
+  let totalDoubles = 0;
+  let totalJackpot = 0;
+  let totalProfit = 0;
+  let totalFails = 0;
   let myCash = 500;
   function myRoll(){
     if ( myCash < 10) {document.getElementById('myOut01').innerHTML = `Insufficient Funds, please reload webpage`; return;}
@@ -10,17 +14,25 @@
     let myNum03 = Math.floor(Math.random() * 10);
     document.getElementById('myOut01').innerHTML = `|${myNum01}|${myNum02}|${myNum03}|`;
     if (myNum01 == myNum02 && myNum01 == myNum03)
-    {document.getElementById('myOut02').innerHTML = `Jackpot, + $500`; myCash += 500; }
+    {document.getElementById('myOut02').innerHTML = `Jackpot, + $500`; myCash += 500; totalJackpot += 1; }
     else if (myNum01 == myNum02 || 
              myNum01 == myNum03 ||
              myNum02 == myNum03)
-    {document.getElementById('myOut02').innerHTML = `Two of a kind, + $30`; myCash += 30; }
+    {document.getElementById('myOut02').innerHTML = `Two of a kind, + $30`; myCash += 30; totalDoubles += 1; }
     else
-    {document.getElementById('myOut02').innerHTML = `Try again` }
+    {document.getElementById('myOut02').innerHTML = `Try again`; totalFails += 1; }
     document.getElementById('myCashDisplay').innerHTML = `$${myCash}`
+    document.getElementById('myInfo').innerHTML =
+    `
+    Total Doubles: ${totalDoubles}<br>
+    Total Jackpots: ${totalJackpot}<br>
+    Total Fails: ${totalFails}<br>
+    Total Profit: $${myCash - 500}<br>
+    `
   }
 </script>
 <div id="myCashDisplay">$500</div>
 <input type=button value="Roll (- $10)" onclick="myRoll()"><br>
 <div id="myOut01">Please roll</div><br>
-<div id="myOut02">Results will be here</div><br>
+<div id="myOut02">Results will be here</div><br><br>
+<div id="myInfo">...</div>
