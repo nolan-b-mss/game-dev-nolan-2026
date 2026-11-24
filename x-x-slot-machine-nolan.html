@@ -5,10 +5,12 @@
   let totalDoubles = 0;
   let totalJackpot = 0;
   let totalFails = 0;
+  let totalRolls = 0;
   let myCash = 500;
   function myRoll(){
     if ( myCash < 10) {document.getElementById('myOut01').innerHTML = `Insufficient Funds, please reload webpage`; return;}
     myCash -= 10;
+    totalRolls += 1;
     let myNum01 = Math.floor(Math.random() * 10);
     let myNum02 = Math.floor(Math.random() * 10);
     let myNum03 = Math.floor(Math.random() * 10);
@@ -28,6 +30,7 @@
     Total Jackpots: ${totalJackpot}<br>
     Total Fails: ${totalFails}<br>
     Total Profit: $${myCash - 500}<br>
+    Total Rolls: ${totalRolls}<br>
     `
   }
 function myAutoRoll() {
