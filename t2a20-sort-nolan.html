@@ -63,15 +63,16 @@
     document.getElementById('myDiv01').innerHTML = myOut01 // shows sorted
 }">
 <br>
-
+Sorted array:<br>
 <div id="myDiv01">Sorted arrays will be here</div>
 ~~~~~~~
+Unsorted array:<br>
 <div id="myDiv02">Unsorted arrays will be here</div>
 <hr>
 New sorts below this:
 <br>
 
-<input type="button" value="Selection Sort" onclick="{
+<input type="button" value="Randomize and Selection Sort" onclick="{
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myCards[myLoop] = Math.floor(Math.random()*10)
     }
@@ -102,7 +103,7 @@ New sorts below this:
     document.getElementById('myDiv01').innerHTML = myOut // shows sorted
 }">
 
-<input type="button" value="Insertion Sort" onclick="{
+<input type="button" value="Randomize and Insertion Sort" onclick="{
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myCards[myLoop] = Math.floor(Math.random()*10)
     }
