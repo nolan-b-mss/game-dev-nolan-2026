@@ -18,7 +18,7 @@
     }
     document.getElementById('myDiv02').innerHTML = myTemp // shows unsorted
 }">
-<input type="button" value="Sort (Bubble)" onclick="{
+<input type="button" value="Sort" onclick="{
     let myTemp = 0
     for (let i = 0; i < myMax; i++) {
         for (let j = 0; j < myMax - 1; j++) {
@@ -72,6 +72,15 @@ New sorts below this:
 <br>
 
 <input type="button" value="Selection Sort" onclick="{
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myCards[myLoop] = Math.floor(Math.random()*10)
+    }
+    let myRandOut = ''
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myRandOut += myLoop + ' = ' + myCards[myLoop] + '<br>' 
+    }
+    document.getElementById('myDiv02').innerHTML = myRandOut // shows unsorted
+
     let myTemp = 0
     for (let i = 0; i < myMax - 1; i++) {
         let minIdx = i
@@ -90,10 +99,19 @@ New sorts below this:
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myOut += myLoop + ' = ' + myCards[myLoop] + '<br>' 
     }
-    document.getElementById('myDiv01').innerHTML = myOut
+    document.getElementById('myDiv01').innerHTML = myOut // shows sorted
 }">
 
 <input type="button" value="Insertion Sort" onclick="{
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myCards[myLoop] = Math.floor(Math.random()*10)
+    }
+    let myRandOut = ''
+    for (let myLoop = 0; myLoop < myMax; myLoop++){
+        myRandOut += myLoop + ' = ' + myCards[myLoop] + '<br>' 
+    }
+    document.getElementById('myDiv02').innerHTML = myRandOut // shows unsorted
+
     for (let i = 1; i < myMax; i++) {
         let key = myCards[i]
         let j = i - 1
@@ -107,7 +125,7 @@ New sorts below this:
     for (let myLoop = 0; myLoop < myMax; myLoop++){
         myOut += myLoop + ' = ' + myCards[myLoop] + '<br>' 
     }
-    document.getElementById('myDiv01').innerHTML = myOut
+    document.getElementById('myDiv01').innerHTML = myOut // shows sorted
 }">
 
 <br>
